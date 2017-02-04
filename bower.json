@@ -1,0 +1,8 @@
+{
+  "name": "graduation-project-frontend",
+  "description": "This is a repository for graduation project frontend dashboard",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "^0.4.2"
+  }
+}
