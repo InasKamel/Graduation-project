@@ -5,3 +5,8 @@
 $ npm install
 $ bower install
 ```
+
+### Run
+```sh
+$ grunt serve
+```

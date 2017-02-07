@@ -13,7 +13,7 @@
         testService();
         
         function sayHello() {
-            return "Hello, World!";
+            return 'Hello, World!';
         }
 
         function testService() {
