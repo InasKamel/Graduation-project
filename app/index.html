@@ -4,27 +4,26 @@
     <meta charset="UTF-8">
     <title>Shopping Service</title>
 
-   <!-- injector:css -->
-     <link rel="stylesheet" href="/app/modules/template/template.css">
-     <link rel="stylesheet" href="/app/shared/app.css">
-     <link rel="stylesheet" href="/app/shared/dashboard/dashboard.css">
-     <!-- endinjector -->
+    <!-- bower:css -->
+    <!-- endbower -->
 
-     <!-- bower:css -->
-     <!-- endbower -->
-
+    <!-- injector:css -->
+    <link rel="stylesheet" href="/app/modules/template/template.css">
+    <link rel="stylesheet" href="/app/shared/app.css">
+    <link rel="stylesheet" href="/app/shared/dashboard/dashboard.css">
+    <!-- endinjector -->
 </head>
 <body ng-app="dashboard">
     <ui-view></ui-view>
 
-     <!-- bower:js -->
+    <!-- bower:js -->
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
 
-    <!-- injector:js -->
-    <script src="/app/app.config.js"></script>
     <script src="/app/app.js"></script>
+    <script src="/app/app.config.js"></script>
+    <!-- injector:js -->
     <script src="/app/modules/template/template.ctrl.js"></script>
     <script src="/app/modules/template/template.route.js"></script>
     <script src="/app/modules/template/template.service.js"></script>
