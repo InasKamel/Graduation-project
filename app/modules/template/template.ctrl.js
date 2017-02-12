@@ -7,8 +7,9 @@
 
     TemplateController.$inject = ['TemplateService'];
     function TemplateController(TemplateService) {
-        this.sayHello = sayHello;
-        this.testService = testService;
+        var vm = this;
+        vm.sayHello = sayHello;
+        vm.testService = testService;
         
         testService();
         
