@@ -6,12 +6,13 @@
 
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
     <!-- endbower -->
 
     <!-- injector:css -->
-    <link rel="stylesheet" href="/app/modules/template/template.css">
-    <link rel="stylesheet" href="/app/shared/app.css">
+    <link rel="stylesheet" href="/app/app.css">
     <link rel="stylesheet" href="/app/shared/dashboard/dashboard.css">
+    <link rel="stylesheet" href="/app/modules/template/template.css">
     <!-- endinjector -->
 </head>
 <body ng-app="dashboard">
@@ -24,14 +25,14 @@
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
 
+    <!-- injector:js -->
     <script src="/app/app.js"></script>
     <script src="/app/app.config.js"></script>
-    <!-- injector:js -->
+    <script src="/app/shared/dashboard/dashboard.ctrl.js"></script>
+    <script src="/app/shared/dashboard/dashboard.route.js"></script>
     <script src="/app/modules/template/template.ctrl.js"></script>
     <script src="/app/modules/template/template.route.js"></script>
     <script src="/app/modules/template/template.service.js"></script>
-    <script src="/app/shared/dashboard/dashboard.ctrl.js"></script>
-    <script src="/app/shared/dashboard/dashboard.route.js"></script>
     <!-- endinjector -->
 </body>
 </html>

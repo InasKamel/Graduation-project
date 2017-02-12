@@ -14,7 +14,19 @@
             injector: {
                 local_dependencies: {
                     files: {
-                        'app/index.html': ['app/{shared,modules}/**/*.js', 'app/{shared,modules}/**/*.css']
+                        'app/index.html': [
+                            [
+                                'app/app.js',
+                                'app/*.js',
+                                'app/shared/**/*.js',
+                                'app/modules/**/*.js',
+                            ],
+                            [
+                                'app/*.css',
+                                'app/shared/**/*.css',
+                                'app/modules/**/*.css',
+                            ]
+                        ]
                     }
                 }
             },

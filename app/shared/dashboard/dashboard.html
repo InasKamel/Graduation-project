@@ -1,13 +1,53 @@
 <div id="dashboard">
     <div id="sidebar">
-        <p>Sidebar</p>
-    </div>
-    <div>
-        <div id="header">
-            <p>Header</p>
+        <div class="logo">
+            <img src="./images/logo.png">
         </div>
-        <div id="content">
+        <div class="menu">
+            <div class="collapse-menu selected">
+                <div class="menu-btn collapsed" data-toggle="collapse" href="#collapse-sidebar-menu">
+                    <i class="fa fa-th" aria-hidden="true"></i>
+                    <span>Products</span>
+                    <i class="dropdown-icon fa fa-angle-down" aria-hidden="true"></i>
+                    <i class="dropdown-icon fa fa-angle-left" aria-hidden="true"></i>
+                </div>
+                <div id="collapse-sidebar-menu" class="collapse">
+                    <a class="menu-btn sub-menu-btn selected">Clothes</a>
+                    <a class="menu-btn sub-menu-btn">Devices</a>
+                    <a class="menu-btn sub-menu-btn">Watches</a>
+                </div>
+            </div>
+            <div class="menu-btn">
+                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                <span>Statistics</span>
+            </div>
+        </div>
+    </div> <!--/sidebar -->
+
+    <div id="page">
+        <header>
+            <ul>
+                <li class="shop">
+                    <div class="logo">
+                        <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAPBAAAAJDVhYTY3NDc5LTg2NTYtNDg1YS04YjBlLTRhMDcxYTNiYzkxYQ.png">
+                    </div>
+                    <div class="details">
+                        <p class="name">town team</p>
+                        <p class="slogn">mens's wear</p>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="settings">
+                    <a>
+                        <i class="fa fa-gear"></i>
+                    </a>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+        </header> <!--/header-->
+
+        <div class="content">
             <ui-view></ui-view>
-        </div>
-    </div>
-</div>
+        </div> <!--/content-->
+    </div> <!--/page-->
+</div> <!--/dashboard -->
