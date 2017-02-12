@@ -7,6 +7,7 @@
 
     LoginController.$inject = [];
     function LoginController() {
-
+        var vm = this;
+        
     }
 })();

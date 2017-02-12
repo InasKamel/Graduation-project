@@ -7,6 +7,6 @@
 
     DashboardController.$inject = [];
     function DashboardController() {
-        
+        var vm = this;
     }
 })();
