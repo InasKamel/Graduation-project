@@ -1,71 +1,175 @@
-body {
-    overflow-x: hidden;
- }
-
-#dashboard {
-    padding-left: 0;   
-}
-
-#header{
-    margin-left: 50px;
-}
-
-/* app logo style */
-
-.logo img{
-    width: 35%;
-    margin-left: 60px;
-    margin-top: 7px;
-    margin-bottom: 25px;
-}
-
-.navbar-header{
-    float: right;
-}
-.navbar-header ul{
-    list-style-type: none;
-}
-
-/*shop logo style*/
-
-.navbar-header img{
-    width: 16%;
-    float: right;
-    margin-right: 160px;
-    margin-top: -20px;
-}
-.navbar-header h3{
-    float: right;
-    margin-top: 10px;
-    font-size: 25px;
-    margin-right: 35px;
-    color: black;
-    margin-bottom: -40px;
-    
-}
-.navbar-header h4{
-    float: right;
-    margin-top: 33px;
-    font-size: 16px;
-    margin-right: 35px;
-    color: gray;
-    margin-bottom: -46px;
-    margin-right: 90px;
-}
-.panel-title a{
-    text-decoration: none;
-}
+/* === Sidebar === */
 #sidebar {
-    z-index: -1;
     position: fixed;
-    left: 180px;
+    z-index: 1000;
+    left: 0;
+    top: 0;
     height: 100%;
-    margin-left: -180px;
-    overflow-y: auto;
-    background:gray;
-    width: 200px;
+    width: 220px;
+    background-color: #1C2B36;
 }
 
+#sidebar .logo {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    background: url('/app/images/sidebar-background.png');
+    background-position-y: 30px;
+}
 
+#sidebar .logo img {
+    width: 100px;
+    margin: 0 auto;
+    display: block;
+}
 
+#sidebar .menu .menu-btn {
+    position: relative;
+    display: block;
+    color: #a7b1c2;
+    padding: 12px 15px;
+    cursor: pointer;
 
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+}
+
+#sidebar .menu .menu-btn:hover,
+#sidebar .menu .collapse-menu .menu-btn:not(.collapsed) {
+    background-color: #15232D;
+    color: #FFF;
+}
+
+#sidebar .menu i {
+    margin: 0 10px 0 0;
+}
+
+#sidebar .menu i.dropdown-icon {
+    position: absolute;
+    right: 0;
+    margin: 3px 15px 3px 0px;
+}
+
+#sidebar .menu .collapse-menu .menu-btn.collapsed .fa-angle-down {
+    display: none;
+}
+
+#sidebar .menu .collapse-menu .menu-btn:not(.collapsed) .fa-angle-left {
+    display: none;
+}
+
+#sidebar .menu .sub-menu-btn {
+    padding: 10px 0px 10px 45px;
+    background-color: #15232D;
+    color: #a7b1c2 !important;
+
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+#sidebar .menu .sub-menu-btn:hover {
+    color: #FFF !important;
+}
+
+#sidebar .menu .selected {
+    border-left: 4px solid #7266BA;
+}
+
+#sidebar .menu .sub-menu-btn.selected {
+    border: none;
+    background-color: #101B23 !important;
+}
+
+/* === Page === */
+#page {
+    position: fixed;
+    top: 0;
+    left: 220px;
+    width: calc(100% - 220px);
+}
+
+/* === Header === */
+#page header {
+    height: 60px;
+    background-color: #F3F3F4;
+    color: #464646;
+    border-bottom: 1px solid #e7eaec;
+    text-align: right;
+}
+
+#page header ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#page header ul li {
+    display: inline-block;
+}
+
+#page header .shop {
+    height: 60px;
+    text-align: left;
+}
+
+#page header .shop .logo {
+    float: left;
+    padding: 5px;
+}
+
+#page header .shop .logo img {
+    height: 50px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#page header .shop .details {
+    float: left;
+    padding: 10px;
+}
+
+#page header .shop .details .name {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#page header .shop .details .slogn {
+    margin-top: -7px;
+}
+
+#page header .settings {
+    height: 60px;
+    border-left: 1px solid #e7eaec;
+}
+
+#page header .settings a {
+    float: left;
+    margin: 15px 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+}
+
+#page header .settings a:hover {
+    background-color: #DDD;
+}
+
+/* === Content === */
+#page .content {
+    margin: 0;
+    padding: 10px;
+}
