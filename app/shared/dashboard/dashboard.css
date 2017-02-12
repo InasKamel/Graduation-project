@@ -1,0 +1,71 @@
+body {
+    overflow-x: hidden;
+ }
+
+#dashboard {
+    padding-left: 0;   
+}
+
+#header{
+    margin-left: 50px;
+}
+
+/* app logo style */
+
+.logo img{
+    width: 35%;
+    margin-left: 60px;
+    margin-top: 7px;
+    margin-bottom: 25px;
+}
+
+.navbar-header{
+    float: right;
+}
+.navbar-header ul{
+    list-style-type: none;
+}
+
+/*shop logo style*/
+
+.navbar-header img{
+    width: 16%;
+    float: right;
+    margin-right: 160px;
+    margin-top: -20px;
+}
+.navbar-header h3{
+    float: right;
+    margin-top: 10px;
+    font-size: 25px;
+    margin-right: 35px;
+    color: black;
+    margin-bottom: -40px;
+    
+}
+.navbar-header h4{
+    float: right;
+    margin-top: 33px;
+    font-size: 16px;
+    margin-right: 35px;
+    color: gray;
+    margin-bottom: -46px;
+    margin-right: 90px;
+}
+.panel-title a{
+    text-decoration: none;
+}
+#sidebar {
+    z-index: -1;
+    position: fixed;
+    left: 180px;
+    height: 100%;
+    margin-left: -180px;
+    overflow-y: auto;
+    background:gray;
+    width: 200px;
+}
+
+
+
+
