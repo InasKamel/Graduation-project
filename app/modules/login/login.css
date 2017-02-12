@@ -1,0 +1,64 @@
+#login-module .col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+#login-module .login-logo {
+    padding: 15px 0px;
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+#login-module .login-logo img {
+    width: 150px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    display: block;
+}
+
+#login-module .login-form form {
+    padding: 10px 0px;
+}
+
+#login-module .login-form form input {
+    border-right: 1px solid #CCC;
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    border-radius: 6px;
+    padding: 0.8rem 0px;
+    text-indent: 0.8rem;
+    width: 335px;
+    margin-left: 42px;
+    height: 42px; 
+    margin: 0 auto;
+    display: block;
+}
+
+#login-module .login-button {
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
+
+#login-module .login-button a {
+    color: #fff;
+    background-color: #15232D;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 8px 19px 9px 19px;
+}
+
+#login-module .login-button a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+#login-module .login-button i {
+    color: #fff;
+    font-size: 15px;
+    padding-right: 5px;
+}
