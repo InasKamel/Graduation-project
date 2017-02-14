@@ -1,39 +1,16 @@
-<! doctype html>
-<html>
-    <head>
-        <title>List of products</title>
-        <link rel="stylesheet" type ="text/css" href="style.css">
-    </head>
-    <body>
-        
-<!-- here the one item box -->
-
-
-    <div  ng-controller="ListController" class = "list">
-
-    <ul>
-
-      <li ng-repeat="oneItem in porducts">
-        
-    <div class = "product">
-       <div class = "productImage">
-           
-         <img src ={{}}/>     
+<div id="list-products-module">
+    <div ng-repeat="x in [1,2,3,4,5,6,7]">
+        <div class="product">
+            <div class="image">
+                <img src="http://gloimg.twinkledeals.com/td/2015/201507/source-img/1436466658259-P-2819655.jpg?20141203001">
             </div>
-                <div class = "name"> {{}}</div>          <!--{{oneItem.name}}-->
-                     <div class = "price"> {{}}</div>   <!--{{oneItem.price}}-->
-    
+            <div class="details">
+                <div class="meta">
+                    <p class="views"><i class="fa fa-eye"></i> 100</p>
+                    <p class="likes"><i class="fa fa-heart"></i> 100</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
     </div>
-           </li>
-           
-                            
-    </ul>
-    </div>
-        
-           
-  
-    
-
-
-    </body>
-</html>
+</div>
