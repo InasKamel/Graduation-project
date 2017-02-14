@@ -12,9 +12,7 @@
                 url: '/list-products',
                 templateUrl: 'modules/list-products/list-products.html',
                 controller: 'ListProductsController as ctrl',
-                data: {
-                    portected: true
-                }
+                data: {}
             });
     }
 })();

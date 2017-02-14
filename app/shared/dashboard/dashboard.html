@@ -29,19 +29,27 @@
             <ul>
                 <li class="shop">
                     <div class="logo">
-                        <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAPBAAAAJDVhYTY3NDc5LTg2NTYtNDg1YS04YjBlLTRhMDcxYTNiYzkxYQ.png">
+                        <img src="{{ ctrl.shopInfo.logo }}">
                     </div>
                     <div class="details">
-                        <p class="name">town team</p>
-                        <p class="slogn">mens's wear</p>
+                        <p class="name">{{ ctrl.shopInfo.name }}</p>
+                        <p class="slogn">{{ ctrl.shopInfo.slogan }}</p>
                     </div>
                     <div class="clear"></div>
                 </li>
                 <li class="settings">
-                    <a>
+                    <!--<a>
                         <i class="fa fa-gear"></i>
                     </a>
-                    <div class="clear"></div>
+                    <div class="clear"></div>-->
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="settings-menu" data-toggle="dropdown" aria-haspopup="true">
+                            <i class="fa fa-gear"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#" ng-click="ctrl.logout()">Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </header> <!--/header-->

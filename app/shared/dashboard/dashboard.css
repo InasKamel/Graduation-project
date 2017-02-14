@@ -101,13 +101,13 @@
     text-align: right;
 }
 
-#page header ul {
+#page header > ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#page header ul li {
+#page header > ul > li {
     display: inline-block;
 }
 
@@ -149,11 +149,13 @@
     border-left: 1px solid #e7eaec;
 }
 
-#page header .settings a {
+#page header .settings button {
     float: left;
     margin: 15px 10px;
     padding: 5px 10px;
     cursor: pointer;
+    background-color: inherit;
+    border-color: #DDD;
 
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -165,8 +167,13 @@
     transition: all 400ms;
 }
 
-#page header .settings a:hover {
+#page header .settings button:hover {
     background-color: #DDD;
+}
+
+#page header .settings .dropdown-menu {
+    top: 50px;
+    right: 9px;
 }
 
 /* === Content === */

@@ -18,15 +18,15 @@
         }
 
         function testService() {
-            TemplateService.callBackend({
-                data: 'data'
-            })
-            .then(function(res) {
-                console.log(res.data);
-            })
-            .catch(function(err) {
-                console.log(err.data);
-            });
+            // TemplateService.callBackend({
+            //     data: 'data'
+            // })
+            // .then(function(res) {
+            //     console.log(res.data);
+            // })
+            // .catch(function(err) {
+            //     console.log(err.data);
+            // });
         }
     }
 })();

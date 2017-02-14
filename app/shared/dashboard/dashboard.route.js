@@ -11,7 +11,10 @@
             .state('dashboard', {
                 abstract: true,
                 templateUrl: 'shared/dashboard/dashboard.html',
-                controller: 'DashboardController as ctrl'
+                controller: 'DashboardController as ctrl',
+                data: {
+                    protected: true
+                }
             });
     }
 })();
