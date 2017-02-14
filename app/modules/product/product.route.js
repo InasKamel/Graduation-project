@@ -8,10 +8,10 @@
     routes.$inject = ['$stateProvider'];
     function routes($stateProvider) {
         $stateProvider
-            .state('view', {
-                url: '/view',
-                templateUrl: 'modules/view/view.html',
-                controller: 'View as ctrl',
+            .state('dashboard.product', {
+                url: '/product',
+                templateUrl: 'modules/product/product.html',
+                controller: 'ProductController as ctrl',
                 data: {
                     portected: true
                 }

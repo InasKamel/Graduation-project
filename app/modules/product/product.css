@@ -1,36 +1,36 @@
-#view-module .row {
+#product-module .row {
     margin: 0px;
 }
 
-#view-module .back a {
+#product-module .back a {
     color: #4D4747;
     float: left;
     font-size: 28px;
 }
 
-#view-module .back a:hover {
+#product-module .back a:hover {
     color: gray;
     text-decoration:none;
 }
 
-#view-module .display-product img {
+#product-module .display-product img {
     width: 300px;
     margin: 90px auto;
     display: block;
 }
 
-#view-module .product-details {
+#product-module .product-details {
     border-left: 2px solid rgba(28, 43, 54, 0.17);
     border-left-width: 2px;
 }
 
-#view-module .product-details h1 {
+#product-module .product-details h1 {
     color: rgba(0, 0, 0, 0.86);
     font-weight: bold;
 
 } 
 
-#view-module .details h1:after {
+#product-module .details h1:after {
     content: "";
     width: 90px;
     height: 2px;
@@ -40,7 +40,7 @@
     margin-top: 21px;
 }
 
-#view-module .product-details p {
+#product-module .product-details p {
     text-align: left;
     line-height: 24px;
     color: #6C5F5F;
@@ -48,37 +48,37 @@
     padding: 15px 0px;
 }
 
-#view-module .product-details {
+#product-module .product-details {
     height: 45em;
     border-left: 1.5 solid #ccc;
 }
 
-#view-module .Review {
+#product-module .Review {
     display: inline-block;
     font-size: 20px;
     padding-bottom: 30px;
 }
 
-#view-module .Review .likes {
+#product-module .Review .likes {
     color:red;
     padding-right: 10px;
 }
 
-#view-module .Review .watching {
+#product-module .Review .watching {
     color:rgb(77, 71, 71);
 }
 
-#view-module .Review i {
+#product-module .Review i {
     padding-right: 10px;
 }
 
-#view-module .price p {
+#product-module .price p {
     color: rgba(0, 0, 0, 0.86);
     font-size: 20px;
     font-weight: bold;
 }
 
-#view-module .price span {
+#product-module .price span {
     color: rgb(77, 71, 71);
     font-size: 20px;
 }
