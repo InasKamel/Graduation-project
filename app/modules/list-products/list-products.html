@@ -1,0 +1,39 @@
+<! doctype html>
+<html>
+    <head>
+        <title>List of products</title>
+        <link rel="stylesheet" type ="text/css" href="style.css">
+    </head>
+    <body>
+        
+<!-- here the one item box -->
+
+
+    <div  ng-controller="ListController" class = "list">
+
+    <ul>
+
+      <li ng-repeat="oneItem in porducts">
+        
+    <div class = "product">
+       <div class = "productImage">
+           
+         <img src ={{}}/>     
+            </div>
+                <div class = "name"> {{}}</div>          <!--{{oneItem.name}}-->
+                     <div class = "price"> {{}}</div>   <!--{{oneItem.price}}-->
+    
+    </div>
+           </li>
+           
+                            
+    </ul>
+    </div>
+        
+           
+  
+    
+
+
+    </body>
+</html>

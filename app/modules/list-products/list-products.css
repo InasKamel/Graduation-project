@@ -1,0 +1,61 @@
+body{
+font-family: Arial;
+font-size:13px
+
+}
+
+div.product{
+    float: left;
+    width:240;
+}
+div.ProductImage{
+
+
+    margin-top: 10 px;
+    text-align: center;
+}
+div.name{
+
+   
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: right;
+}
+div.getIt{
+
+     
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: center;
+      border-top: coral 1px solid;
+      line-height: 40px;
+      background-color: ghostwhite;
+      background: url("kart.png") no-repeat;
+      background-size:60px 60px;
+}
+div.price{
+    font-size: 18px;
+    color: coral;
+}
+div.list{
+
+    width:1000px;
+    display: table;
+    margin:auto;
+}
+div.list ul,
+div.list ul li{
+float:left;
+padding: 0px;
+margin: 0px;
+list-style: none;
+
+}
+div.list ul{
+    width:99%;
+    background-color: moccasin;
+}
+div.list ul li{
+
+    width:50%;
+}
