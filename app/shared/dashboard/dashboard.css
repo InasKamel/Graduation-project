@@ -41,6 +41,10 @@
     color: #FFF;
 }
 
+#sidebar .menu .menu-btn:focus {
+    text-decoration: none;
+}
+
 #sidebar .menu i {
     margin: 0 10px 0 0;
 }

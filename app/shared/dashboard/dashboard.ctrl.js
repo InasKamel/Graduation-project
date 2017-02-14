@@ -14,6 +14,7 @@
             slogan: '',
             logo: '',
         };
+        vm.categories = [];
 
         init();
         
@@ -24,6 +25,15 @@
                     vm.shopInfo.name = res.data.name;
                     vm.shopInfo.slogan = res.data.slogan;
                     vm.shopInfo.logo = res.data.logo; 
+                })
+                .catch(function(err) {
+                    // @TODO: handle error
+                });
+
+            DashboardService
+                .getCategories()
+                .then(function(res) {
+                    vm.categories = res.data.categories;
                 })
                 .catch(function(err) {
                     // @TODO: handle error
