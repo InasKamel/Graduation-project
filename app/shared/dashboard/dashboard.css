@@ -89,6 +89,7 @@
     top: 0;
     left: 220px;
     width: calc(100% - 220px);
+    height: 100%;
 }
 
 /* === Header === */
@@ -172,4 +173,5 @@
 #page .content {
     margin: 0;
     padding: 10px;
+    height: calc(100% - 60px);
 }
