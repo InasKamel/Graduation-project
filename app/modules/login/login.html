@@ -6,17 +6,18 @@
         <div class="login-form">  
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control"  placeholder="Username">
+                    <input type="text" class="form-control"  placeholder="Username" ng-model="ctrl.credentials.username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control"  placeholder="Password">
+                    <input type="password" class="form-control"  placeholder="Password" ng-model="ctrl.credentials.password">
                 </div>
-            </form>           
+                <p class="form-message" ng-if="ctrl.message.length"><i class="fa fa-exclamation-triangle"></i> {{ ctrl.message }}</p>
+                <div class="login-button">
+                    <button ng-click="ctrl.login()" ng-class="{ 'disabled': ctrl.loading }">
+                        <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
+                    </button>
+                </div>
+            </form>
         </div> <!--/login-form-->
-        <div class="login-button">
-            <a href="#">
-                <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
-            </a>
-        </div> <!--/login-button-->
     </div> <!--/login-->
 </div>

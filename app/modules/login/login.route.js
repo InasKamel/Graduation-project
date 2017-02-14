@@ -12,9 +12,7 @@
                 url: '/login',
                 templateUrl: 'modules/login/login.html',
                 controller: 'LoginController as ctrl',
-                data: {
-                    portected: true
-                }
+                data: {}
             });
     }
 })();

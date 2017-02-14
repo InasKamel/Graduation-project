@@ -30,27 +30,45 @@
     padding: 10px 0;
 }
 
-#login-module .login-button a {
+#login-module .login-button button {
     display: block;
     padding: 10px 20px;
     margin: 0 auto;
     max-width: 120px;
     color: #FFF;
     background-color: #1C2B36;
+    box-shadow: none;
+    border: none;
     border-radius: 4px;
     font-size: 16px;
-
+    cursor: pointer;
+    
     -webkit-transition: all 400ms;
     -moz-transition: all 400ms;
     -o-transition: all 400ms;
     transition: all 400ms;
 }
 
-#login-module .login-button a:hover {
+#login-module .login-button button:hover {
     color: #a7b1c2;
     background-color: #15232D;
 }
 
+#login-module .login-button button.disabled {
+    background: #AAA;
+    cursor: wait;
+}
+
+#login-module .login-button button.disabled:hover {
+    color: #FFF;
+}
+
 #login-module .login-button i {
     margin-right: 5px;
+}
+
+#login-module .form-message {
+    margin: 20px 0 10px 0;
+    text-transform: capitalize;
+    color: red;
 }

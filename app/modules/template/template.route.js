@@ -12,9 +12,7 @@
                 url: '/template',
                 templateUrl: 'modules/template/template.html',
                 controller: 'TemplateController as ctrl',
-                data: {
-                    portected: true
-                }
+                data: {}
             });
     }
 })();
