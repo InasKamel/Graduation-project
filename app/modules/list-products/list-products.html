@@ -1,15 +1,15 @@
 <div id="list-products-module">
-    <div ng-repeat="x in [1,2,3,4,5,6,7]">
+    <div ng-repeat="product in ctrl.products">
         <div class="product">
             <div class="image">
-                <img src="http://gloimg.twinkledeals.com/td/2015/201507/source-img/1436466658259-P-2819655.jpg?20141203001">
+                <img ng-src="{{product.image}}">
             </div>
             <div class="details">
                 <div class="meta">
-                    <p class="views"><i class="fa fa-eye"></i> 100</p>
-                    <p class="likes"><i class="fa fa-heart"></i> 100</p>
+                    <p class="views"><i class="fa fa-eye"></i> {{ product.views }}</p>
+                    <p class="likes"><i class="fa fa-heart"></i> {{ product.likes }}</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <p>{{ product.name }}</p>
             </div>
         </div>
     </div>
