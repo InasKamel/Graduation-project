@@ -12,6 +12,7 @@
         $authProvider.tokenName = 'access_token';
         $authProvider.tokenHeader = 'X-Access-Token';
         $authProvider.tokenPrefix = '';
+        $authProvider.tokenType = '';
 
         $urlRouterProvider.when('', '/template');    // Home page
     }
