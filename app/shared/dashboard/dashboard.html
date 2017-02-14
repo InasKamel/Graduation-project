@@ -1,10 +1,10 @@
 <div id="dashboard">
     <div id="sidebar">
         <div class="logo">
-            <img src="./images/logo.png">
+            <a ui-sref="{{ homepage }}"><img src="./images/logo.png"></a>
         </div>
         <div class="menu">
-            <div class="collapse-menu selected">
+            <div class="collapse-menu">
                 <div class="menu-btn collapsed" data-toggle="collapse" href="#collapse-sidebar-menu">
                     <i class="fa fa-th" aria-hidden="true"></i>
                     <span>Products</span>
@@ -12,9 +12,7 @@
                     <i class="dropdown-icon fa fa-angle-left" aria-hidden="true"></i>
                 </div>
                 <div id="collapse-sidebar-menu" class="collapse">
-                    <a class="menu-btn sub-menu-btn selected">Clothes</a>
-                    <a class="menu-btn sub-menu-btn">Devices</a>
-                    <a class="menu-btn sub-menu-btn">Watches</a>
+                    <a ng-repeat="category in ctrl.categories" ui-sref="dashboard.list-products({ id: category.id })" class="menu-btn sub-menu-btn">{{ category.name }}</a>
                 </div>
             </div>
             <div class="menu-btn">
@@ -27,7 +25,7 @@
     <div id="page">
         <header>
             <ul>
-                <li class="shop">
+                <li class="shop" ng-if="ctrl.shopInfo">
                     <div class="logo">
                         <img src="{{ ctrl.shopInfo.logo }}">
                     </div>

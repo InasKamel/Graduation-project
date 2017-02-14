@@ -18,6 +18,7 @@
     width: 190px;
     height: 190px;
     padding: 10px;
+    text-align: center;
 }
 
 #list-products-module .product .details {
@@ -26,7 +27,7 @@
     left: 0;
     width: 190px;
     height: 190px;
-    padding: 20px 15px;
+    padding: 35px 15px;
     background: rgba(220, 220, 220, 0.7);
     text-align: center;
     visibility: hidden;

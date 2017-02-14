@@ -14,7 +14,7 @@
         testService();
         
         function sayHello() {
-            return 'Hello, World!';
+            return 'Welcome !';
         }
 
         function testService() {

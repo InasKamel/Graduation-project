@@ -9,7 +9,7 @@
     function routes($stateProvider) {
         $stateProvider
             .state('dashboard.product', {
-                url: '/product',
+                url: '/product/:id',
                 templateUrl: 'modules/product/product.html',
                 controller: 'ProductController as ctrl',
                 data: {}
