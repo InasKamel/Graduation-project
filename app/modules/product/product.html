@@ -1,24 +1,24 @@
 <div id="product-module">
-    <div class="back-btn">
+    <div class="back-btn" ui-sref="dashboard.list-products({ id: ctrl.product.categoryId })">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </div>
-    <div class="row">
+    <div class="row" ng-if="ctrl.product">
         <div class="product-image col-sm-7">
             <div class="product-display">
-                <img src="./images/shirt.png">
+                <img src="{{ ctrl.product.image }}">
             </div>
         </div>
         <div class="product-details col-sm-5">
             <div class="details">
-                <p class="product-name">Sweatshirt black</p>
-                <p class="product-desc">80% Cotton 20% Polyester in Black Color, 2 Side pockets, Lined with 100% polyester fleece.<br>Available sizes: Small-4XL.</p>
+                <p class="product-name">{{ ctrl.product.name }}</p>
+                <p class="product-desc">{{ ctrl.product.desc }}</p>
                 <div class="product-meta">
-                    <span class="likes"><i class="fa fa-heart" aria-hidden="true"></i>432</span>
-                    <span class="views"><i class="fa fa-eye" aria-hidden="true"></i>50</span>
+                    <span class="likes"><i class="fa fa-heart" aria-hidden="true"></i>{{ ctrl.product.likes }}</span>
+                    <span class="views"><i class="fa fa-eye" aria-hidden="true"></i>{{ ctrl.product.views }}</span>
                 </div>
                 <div class="price">
                     <p><i class="fa fa-money"></i>Price</p>
-                    <span>199.0 L.E</span>
+                    <span>{{ ctrl.product.price }}.0 L.E</span>
                 </div>
             </div>            
         </div> <!--product-details-->

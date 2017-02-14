@@ -1,8 +1,8 @@
 <div id="list-products-module">
-    <div ng-repeat="product in ctrl.products">
+    <div ng-repeat="product in ctrl.products" ui-sref="dashboard.product({ id: product.id })">
         <div class="product">
             <div class="image">
-                <img ng-src="{{product.image}}">
+                <img ng-src="{{ product.image }}">
             </div>
             <div class="details">
                 <div class="meta">
