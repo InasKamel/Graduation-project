@@ -1,75 +1,48 @@
-(function () {
-	'use strict';
+'use strict';
 
-    module.exports = function(grunt) {
-        // tasks configuration
-        grunt.initConfig({
-            pkg: grunt.file.readJSON('package.json'),
-            jshint: {
-                options: {
-                    jshintrc: true
-                },
-                all: ['Gruntfile.js', 'app/**/*.js']
-            },
-            injector: {
-                local_dependencies: {
-                    files: {
-                        'app/index.html': [
-                            [
-                                'app/app.js',
-                                'app/*.js',
-                                'app/shared/**/*.js',
-                                'app/modules/**/*.js',
-                            ],
-                            [
-                                'app/*.css',
-                                'app/shared/**/*.css',
-                                'app/modules/**/*.css',
-                            ]
-                        ]
-                    }
-                }
-            },
-            wiredep: {
-                target: {
-                    src: 'app/index.html'
-                }
-            },
-            watch: {
-                options: {
-                    livereload: true
-                },
-                html: {
-                    files: ['app/**/*.html']
-                },
-                css: {
-                    files: ['app/**/*.css']
-                },
-                js: {
-                    files: ['Gruntfile.js', 'app/**/*.js'],
-                    tasks: ['jshint'] 
-                }
-            },
-            connect: {
-                server: {
-                    options: {
-                        host: 'localhost',
-                        port: 8000,
-                        livereload: true,
-                        base: './'
-                    }
-                }
+module.exports = function(grunt) {
+    // Load the include-all library in order to require all of our grunt
+    // configurations and task registrations dynamically.
+    var includeAll = require('include-all');
+
+    /**
+     * Loads Grunt configuration modules from the specified
+     * relative path. These modules should export a function
+     * that, when run, should either load/configure or register
+     * a Grunt task.
+     */
+    function loadTasks(relPath) {
+        return includeAll({
+            dirname: require('path').resolve(__dirname, relPath),
+            filter: /(.+)\.js$/,
+            excludeDirs: /^\.git$/
+        }) || {};
+    }
+
+    /**
+     * Invokes the function from a Grunt configuration module with
+     * a single argument - the `grunt` object.
+     */
+    function invokeConfigFn(tasks) {
+        for(var taskName in tasks) {
+            if(tasks.hasOwnProperty(taskName)) {
+                tasks[taskName](grunt);
             }
-        });
+        }
+    }
 
-        // load grunt plugins
-        grunt.loadNpmTasks('grunt-contrib-jshint');
-        grunt.loadNpmTasks('grunt-wiredep');
-        grunt.loadNpmTasks('grunt-injector');
-        grunt.loadNpmTasks('grunt-contrib-connect');
-        grunt.loadNpmTasks('grunt-contrib-watch');
+    // Load task functions
+    var taskConfigurations = loadTasks('./tasks/config');
+    var registerDefinitions = loadTasks('./tasks/register');
 
-        // tasks
-        grunt.registerTask('serve', ['jshint', 'wiredep', 'injector', 'connect', 'watch']);
-    };
-}());
+    // Ensure that a default task exists
+    if(!registerDefinitions.default) {
+        registerDefinitions.default = function(grunt) {
+            grunt.registerTask('default', []);
+        };
+    }
+
+    // Run task functions to configure Grunt
+    invokeConfigFn(taskConfigurations);
+    invokeConfigFn(registerDefinitions);
+};
