@@ -5,7 +5,7 @@
     <div class="row" ng-if="ctrl.product">
         <div class="product-image col-sm-7">
             <div class="product-display">
-                <img src="{{ ctrl.product.image }}">
+                <img ng-src="{{ ctrl.product.image }}">
             </div>
         </div>
         <div class="product-details col-sm-5">
@@ -20,7 +20,7 @@
                     <p><i class="fa fa-money"></i>Price</p>
                     <span>{{ ctrl.product.price }}.0 L.E</span>
                 </div>
-            </div>            
+            </div>
         </div> <!--product-details-->
     </div> <!--row-->
 </div> <!--/product-module-->

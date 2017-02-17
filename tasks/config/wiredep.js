@@ -13,7 +13,7 @@
 module.exports = function(grunt) {
     grunt.config.set('wiredep', {
         app: {
-            src: 'app/index.html'
+            src: '.tmp/index.html'
         }
     });
 

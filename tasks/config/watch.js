@@ -15,16 +15,30 @@ module.exports = function(grunt) {
         options: {
             livereload: true
         },
-        html: {
-            files: ['app/**/*.html']
+        index: {
+            files: ['app/index.html'],
+            tasks: ['copy:index', 'wiredep', 'injector']
         },
-        css: {
-            files: ['app/**/*.css']
+        html: {
+            files: ['app/**/!(index).html'],
+            tasks: ['copy:html']
+        },
+        less: {
+            files: ['app/**/*.less'],
+            tasks: ['less']
         },
         js: {
             files: ['Gruntfile.js', 'tasks/**/*.js', 'app/**/*.js'],
-            tasks: ['jshint']
-        }
+            tasks: ['jshint', 'copy:js', 'injector']
+        },
+        assets: {
+            files: ['app/assets/**/*.*'],
+            tasks: ['copy:assets']
+        },
+        bower: {
+            files: ['bower_components'],
+            tasks: ['wiredep']
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');

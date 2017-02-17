@@ -1,7 +1,7 @@
 <div id="dashboard">
     <div id="sidebar">
         <div class="logo">
-            <a ui-sref="{{ homepage }}"><img src="./images/logo.png"></a>
+            <a ui-sref="{{ homepage }}"><img ng-src="./assets/images/logo.png"></a>
         </div>
         <div class="menu">
             <div class="collapse-menu">
@@ -27,7 +27,7 @@
             <ul>
                 <li class="shop" ng-if="ctrl.shopInfo">
                     <div class="logo">
-                        <img src="{{ ctrl.shopInfo.logo }}">
+                        <img ng-src="{{ ctrl.shopInfo.logo }}">
                     </div>
                     <div class="details">
                         <p class="name">{{ ctrl.shopInfo.name }}</p>

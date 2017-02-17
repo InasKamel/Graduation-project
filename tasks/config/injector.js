@@ -13,19 +13,23 @@
 
 module.exports = function(grunt) {
     grunt.config.set('injector', {
+        options: {
+            ignorePath: '.tmp',
+            addRootSlash: false
+        },
         local_dependencies: {
             files: {
-                'app/index.html': [
+                '.tmp/index.html': [
                     [
-                        'app/app.js',
-                        'app/*.js',
-                        'app/shared/**/*.js',
-                        'app/modules/**/*.js',
+                        '.tmp/app.js',
+                        '.tmp/*.js',
+                        '.tmp/shared/**/*.js',
+                        '.tmp/modules/**/*.js',
                     ],
                     [
-                        'app/*.css',
-                        'app/shared/**/*.css',
-                        'app/modules/**/*.css',
+                        '.tmp/*.css',
+                        '.tmp/shared/**/*.css',
+                        '.tmp/modules/**/*.css',
                     ]
                 ]
             }

@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = function(grunt) {
+    // Display the elapsed execution time of grunt tasks.
+    require('time-grunt')(grunt);
+
     // Load the include-all library in order to require all of our grunt
     // configurations and task registrations dynamically.
     var includeAll = require('include-all');
