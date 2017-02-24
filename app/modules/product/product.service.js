@@ -9,6 +9,7 @@
     function ProductService($http, $q) {
         var methods = {
             getProduct: getProduct,
+            updateSizes: updateSizes,
         };
         return methods;
 
@@ -19,6 +20,26 @@
                 url: endpointURL,
                 headers: {},
             };
+
+            return $http(req)
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return $q.reject(err);
+                });
+        }
+
+         function updateSizes(productId, size, value) {
+            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId + '/sizes';
+            var req = {
+                method: 'PATCH',
+                url: endpointURL,
+                headers: {},
+                data: {},
+            };
+            
+            req.data[size] = value;
 
             return $http(req)
                 .then(function(res) {

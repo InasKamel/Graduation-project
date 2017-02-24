@@ -20,6 +20,10 @@
                     <p><i class="fa fa-money"></i>Price</p>
                     <span>{{ ctrl.product.price }}.0 L.E</span>
                 </div>
+                <div class="product-size">
+                    <p><i class="fa fa-hand-o-down" aria-hidden="true"></i>Size</p>
+                    <button type="button" class="size-btn" ng-repeat="(size, value) in ctrl.product.sizes" ng-class="{'selected': value}" ng-click="ctrl.changeSize(size)">{{ size }}</button>
+                </div>
             </div>
         </div> <!--product-details-->
     </div> <!--row-->
