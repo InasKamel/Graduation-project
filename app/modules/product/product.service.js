@@ -9,6 +9,7 @@
     function ProductService($http, $q) {
         var methods = {
             getProduct: getProduct,
+            editProduct: editProduct,
         };
         return methods;
 
@@ -27,6 +28,25 @@
                 .catch(function(err) {
                     return $q.reject(err);
                 });
+        }
+        function editProduct(productId, attribute, newValue) {
+            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId;
+            var req = {
+                method: 'PATCH',
+                url: endpointURL,
+                data: {
+                },
+                headers: {},
+            };
+            req.data[attribute]=newValue;
+
+            return $http(req)
+               .then(function(res) {
+                return res;
+            })
+            .catch(function(err) {
+                return $q.reject(err);
+            });
         }
     }
 })();
