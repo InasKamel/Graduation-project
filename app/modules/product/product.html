@@ -10,34 +10,152 @@
         </div>
         <div class="product-details col-sm-5">
             <div class="details">
-                <p class="product-name">{{ ctrl.product.name }}</p>
-                <p class="product-desc">{{ ctrl.product.desc }}</p>
-            </div>
-            <div class="product-meta">
-                <span class="likes"><i class="fa fa-heart" aria-hidden="true"></i>{{ ctrl.product.likes }}</span>
-                <span class="views"><i class="fa fa-eye" aria-hidden="true"></i>{{ ctrl.product.views }}</span>
-            </div>
-
-            <div class="price">
-                <p><i class="fa fa-money"></i>Price</p>
-                <span>{{ ctrl.product.price }}.0 L.E</span>
-            </div>
-
-            <div class="product-colors">
-                <p><i class="fa fa-paint-brush"></i>Colors</p>
-                <div class="colors">
-                    <div
-                        class="color"
-                        ng-repeat="color in ctrl.product.colors"
-                        ng-style="{ 'background-color': color }"
-                        ng-click="ctrl.deleteColor(color)">
-                            <div class="delete">
-                                <i class="fa fa-trash"></i>
-                            </div>
+                <!--product-name-->
+                <div class="product-name">
+                    <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-name'">
+                        <p>{{ ctrl.product.name }}</p>
+                        <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="name.newValue = ctrl.product.name; ctrl.feildInEdit = 'product-name'">
+                            <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
+                        </div>
                     </div>
-                    <p ng-show="!ctrl.product.colors.length">There is no colors</p>
-                </div>
+
+                    <div class="field-editing" ng-show="ctrl.feildInEdit === 'product-name'">
+                        <p>Product name</p>
+                        <form name="productNameForm">
+                            <input type="text" name="name" ng-model="name.newValue" autofocus required>
+                            <div class="messages" ng-messages="productNameForm.name.$error">
+                                <p ng-message="required">Name is required</p>
+                            </div>
+                            <div class="btns">
+                                <div class="spinner" ng-show="ctrl.isLoading">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    ng-disabled="ctrl.isLoading || productNameForm.name.$invalid"
+                                    ng-click="ctrl.editProduct('name', name.newValue);"
+                                    class="save-btn"><i class="fa fa-save"></i>Save changes</button>
+                                <button
+                                    ng-disabled="ctrl.isLoading"
+                                    ng-click="ctrl.feildInEdit = undefined"
+                                    class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!--/product-name-->
+
+                <!--product-desc-->
+                <div class="product-desc">
+                    <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-desc'">
+                        <p>{{ ctrl.product.desc }}</p>
+                        <p ng-show="ctrl.product.desc === ''">There is no description</p>
+                        <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="desc.newValue = ctrl.product.desc; ctrl.feildInEdit = 'product-desc'">
+                            <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
+                        </div>
+                    </div>
+
+                    <div class="field-editing" ng-show="ctrl.feildInEdit === 'product-desc'">
+                        <p>Product description</p>
+                        <form name="productDescForm">
+                            <textarea name="desc" ng-model="desc.newValue" autofocus></textarea>
+                            <div class="messages" ng-messages="productDescForm.desc.$error">
+                            </div>
+                            <div class="btns">
+                                <div class="spinner" ng-show="ctrl.isLoading">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    ng-disabled="ctrl.isLoading || productDescForm.desc.$invalid"
+                                    ng-click="ctrl.editProduct('desc', desc.newValue);"
+                                    class="save-btn"><i class="fa fa-save"></i>Save changes</button>
+                                <button
+                                    ng-disabled="ctrl.isLoading"
+                                    ng-click="ctrl.feildInEdit = undefined"
+                                    class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!--/product-desc-->
+
+                <!--product-meta-->
+                <div class="product-meta">
+                    <span class="likes"><i class="fa fa-heart" aria-hidden="true"></i>{{ ctrl.product.likes }}</span>
+                    <span class="views"><i class="fa fa-eye" aria-hidden="true"></i>{{ ctrl.product.views }}</span>
+                </div> <!--/product-meta-->
+
+                <!--product-price-->
+                <div class="product-price">
+                    <p><i class="fa fa-money"></i>Price</p>
+                    <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-price'">
+                        <p><span>{{ ctrl.product.price | number:2 }} L.E</span></p>
+                        <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="price.newValue = ctrl.product.price; ctrl.feildInEdit = 'product-price'">
+                            <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
+                        </div>
+                    </div>
+
+                    <div class="field-editing" ng-show="ctrl.feildInEdit === 'product-price'">
+                        <form name="productPriceForm">
+                            <input type="number" name="price" ng-model="price.newValue" autofocus required>
+                            <div class="messages" ng-messages="productPriceForm.price.$error">
+                                <p ng-message="required">Price is required</p>
+                                <p ng-message="number">Price should be a number</p>
+                            </div>
+                            <div class="btns">
+                                <div class="spinner" ng-show="ctrl.isLoading">
+                                    <div class="bounce1"></div>
+                                    <div class="bounce2"></div>
+                                    <div class="bounce3"></div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    ng-disabled="ctrl.isLoading || productPriceForm.price.$invalid"
+                                    ng-click="ctrl.editProduct('price', price.newValue);"
+                                    class="save-btn"><i class="fa fa-save"></i>Save changes</button>
+                                <button
+                                    ng-disabled="ctrl.isLoading"
+                                    ng-click="ctrl.feildInEdit = undefined"
+                                    class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!--/product-price-->
+
+                <!--product-colors-->
+                <div class="product-colors">
+                    <p><i class="fa fa-paint-brush"></i>Colors</p>
+                    <div class="colors">
+                        <div
+                            class="color"
+                            ng-repeat="color in ctrl.product.colors"
+                            ng-style="{ 'background-color': color }"
+                            ng-click="ctrl.deleteColor(color)">
+                                <div class="delete">
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                        </div>
+                        <p ng-show="!ctrl.product.colors.length">There is no colors</p>
+                    </div>
+                </div> <!--/product-colors-->
+
+                <!--product-size-->
+                <div class="product-sizes">
+                    <p><i class="fa fa-th" aria-hidden="true"></i>Sizes</p>
+                    <div class="btns">
+                        <button
+                            class="size-btn"
+                            ng-disabled="ctrl.isLoading"
+                            ng-repeat="(size, value) in ctrl.product.sizes"
+                            ng-class="{ 'selected': value }"
+                            ng-click="ctrl.changeSize(size)">{{ size }}</button>
+                    </div>
+                </div> <!--/product-size-->
+
             </div>
-        </div> <!--product-details-->
-    </div> <!--row-->
+        </div> <!--/product-details-->
+    </div> <!--/row-->
 </div> <!--/product-module-->
