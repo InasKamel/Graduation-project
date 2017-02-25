@@ -84,6 +84,14 @@
                     value: color,
                 }
             };
+
+            return $http(req)
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return $q.reject(err);
+                });
         }
     }
 })();

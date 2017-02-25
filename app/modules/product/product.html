@@ -133,6 +133,7 @@
                             class="color"
                             ng-repeat="color in ctrl.product.colors"
                             ng-style="{ 'background-color': color }"
+                            ng-class="{ 'disabled': ctrl.isLoading }"
                             ng-click="ctrl.deleteColor(color)">
                                 <div class="delete">
                                     <i class="fa fa-trash"></i>

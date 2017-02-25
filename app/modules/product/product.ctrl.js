@@ -47,8 +47,8 @@
         }
 
         function changeSize(size) {
-            var newValue = !vm.product.sizes[size];
             vm.isLoading = true;
+            var newValue = !vm.product.sizes[size];
             ProductService
                 .updateSizes(productId, size, newValue)
                 .then(function(res) {
@@ -61,9 +61,15 @@
         }
 
         function deleteColor(color) {
+            vm.isLoading = true;
             ProductService
                 .deleteColor(productId, color)
                 .then(function(res) {
+                    var index;
+                    while((index = vm.product.colors.indexOf(color)) !== -1) {
+                        vm.product.colors.splice(index, 1);
+                    }
+                    vm.isLoading = false;
                 })
                 .catch(function(err) {
                     // @TODO: handle the error
