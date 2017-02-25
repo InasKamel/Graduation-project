@@ -122,15 +122,52 @@
         }
     }
 
-    img {
-        display: none;
-        cursor: pointer;
-        margin: right;
-        width: 17px;
-        height: 17px;
-        position: absolute;
-        right: 0px;
-        top: 5px
+    .product-size {
+        margin-top: 30px;
+        & > p {
+            color: #444;
+            font-size: 22px;
+            font-weight: bold;
+            i {
+                font-size: 19px;
+            }
+        }
+
+        .btns {
+            margin: 5px 0;
+            .size-btn {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                font-size: 11px;
+                margin-right: 7px;
+                background-color:#F3F3F4;
+                color: #333;
+                border: 1px solid #CCC;
+                text-transform: uppercase;
+                outline: none;
+
+                -webkit-transition: all 400ms;
+                -moz-transition: all 400ms;
+                -o-transition: all 400ms;
+                transition: all 400ms;
+
+                &:hover {
+                    border-color: #AAA;
+                    background-color: #EEE;
+                }
+
+                &:disabled {
+                    cursor: wait;
+                }
+
+                &.selected {
+                    background-color: #6fa8dc;
+                    border-color: #3498DB;
+                    color: #FFF;
+                }
+            }
+        }
     }
 }
 
@@ -196,6 +233,7 @@
                 }
                 &:disabled {
                     background: #999;
+                    cursor: wait;
                 }
             }
 
@@ -256,28 +294,6 @@
             opacity: 1;
             max-width: 100px;
             margin: 0px 5px 0px 8px;
-        }
-    }
-}
-
-#product-module .product-size {
-    margin-top: 30px;
-    p {
-        color: #444;
-        font-size: 22px;
-        font-weight: bold;
-    }
-
-    .size-btn {
-        margin-top: 5px;
-        width: 45px;
-        background-color:#F3F3F4;
-        color: #333333;
-        font-size: 19px;
-
-        &.selected {
-            background-color: dimgray;
-            color: #F3F3F4;
         }
     }
 }

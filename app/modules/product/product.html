@@ -127,8 +127,15 @@
 
                 <!--product-size-->
                 <div class="product-size">
-                    <p><i class="fa fa-hand-o-down" aria-hidden="true"></i>Size</p>
-                    <button type="button" class="size-btn" ng-repeat="(size, value) in ctrl.product.sizes" ng-class="{'selected': value}" ng-click="ctrl.changeSize(size)">{{ size }}</button>
+                    <p><i class="fa fa-th" aria-hidden="true"></i>Sizes</p>
+                    <div class="btns">
+                        <button
+                            class="size-btn"
+                            ng-disabled="ctrl.isLoading"
+                            ng-repeat="(size, value) in ctrl.product.sizes"
+                            ng-class="{ 'selected': value }"
+                            ng-click="ctrl.changeSize(size)">{{ size }}</button>
+                    </div>
                 </div> <!--/product-size-->
 
             </div>

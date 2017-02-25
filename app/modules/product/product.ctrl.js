@@ -47,10 +47,12 @@
 
         function changeSize(size) {
             var newValue = !vm.product.sizes[size];
+            vm.isLoading = true;
             ProductService
                 .updateSizes(productId, size, newValue)
                 .then(function(res) {
                     vm.product.sizes[size] = newValue;
+                    vm.isLoading = false;
                 })
                 .catch(function(err) {
                     // @TODO: handle the error
