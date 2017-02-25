@@ -131,7 +131,7 @@
                     <div class="colors">
                         <div
                             class="color"
-                            ng-repeat="color in ctrl.product.colors"
+                            ng-repeat="color in ctrl.product.colors track by $index"
                             ng-style="{ 'background-color': color }"
                             ng-class="{ 'disabled': ctrl.isLoading }"
                             ng-click="ctrl.deleteColor(color)">
@@ -144,7 +144,6 @@
                                 <i class="fa fa-plus"></i>
                             </div>
                         </div>
-                        <p ng-show="!ctrl.product.colors.length">There is no colors</p>
                     </div>
                     <div class="new-color field-editing" ng-show="ctrl.feildInEdit === 'new-color'">
                         <p>Add new color</p>
