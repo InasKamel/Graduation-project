@@ -12,9 +12,16 @@
         vm.feildInEdit = undefined;
         vm.isLoading = false;
 
+        vm.colorPickerValue= '#FF0000';
+        vm.colorPickerOptions = {
+            format: 'hex',
+            disabled: vm.isLoading,
+        };
+
         vm.editProduct = editProduct;
         vm.changeSize = changeSize;
         vm.deleteColor = deleteColor;
+        vm.addColor = addColor;
 
         var productId;
 
@@ -69,6 +76,20 @@
                     while((index = vm.product.colors.indexOf(color)) !== -1) {
                         vm.product.colors.splice(index, 1);
                     }
+                    vm.isLoading = false;
+                })
+                .catch(function(err) {
+                    // @TODO: handle the error
+                });
+        }
+
+        function addColor() {
+            vm.isLoading = true;
+            ProductService
+                .addColor(productId, vm.colorPickerValue)
+                .then(function(res) {
+                    vm.product.colors.push(vm.colorPickerValue);
+                    vm.feildInEdit = undefined;
                     vm.isLoading = false;
                 })
                 .catch(function(err) {

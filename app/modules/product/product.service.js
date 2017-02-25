@@ -12,6 +12,7 @@
             editProduct: editProduct,
             updateSizes: updateSizes,
             deleteColor: deleteColor,
+            addColor: addColor
         };
         return methods;
 
@@ -80,6 +81,26 @@
                 headers: {
                     'Content-type': 'application/json;charset=utf-8'
                 },
+                data: {
+                    value: color,
+                }
+            };
+
+            return $http(req)
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return $q.reject(err);
+                });
+        }
+
+        function addColor(productId, color) {
+            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId + '/colors';
+            var req = {
+                method: 'POST',
+                url: endpointURL,
+                headers: {},
                 data: {
                     value: color,
                 }

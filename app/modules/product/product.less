@@ -214,9 +214,31 @@
                     }
                 }
 
+                .new {
+                    width: 100%;
+                    height: 100%;
+                    line-height: 25px;
+                    background-color: rgba(200, 200, 200, 0.5);
+                    color: #999;
+                    text-align: center;
+                    border-radius: 50%;
+                    -webkit-transition: all 400ms;
+                    -moz-transition: all 400ms;
+                    -o-transition: all 400ms;
+                    transition: all 400ms;
+
+                    i {
+                        margin: 0;
+                    }
+                }
+
                 &:hover .delete {
                     visibility: visible;
                     opacity: 1;
+                }
+
+                &:hover .new {
+                    color: #000;
                 }
 
                 &.disabled {
@@ -248,6 +270,18 @@
 
         &:focus {
             outline: none;
+        }
+    }
+
+    &.new-color {
+        .color-picker-wrapper {
+            position: absolute;
+            max-width: 200px;
+        }
+        input {
+            width: auto;
+            margin: auto;
+            padding: 5px 7px;
         }
     }
 

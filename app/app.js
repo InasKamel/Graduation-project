@@ -5,7 +5,8 @@
         .module('dashboard', [
             'satellizer',
             'ui.router',
-            'ngMessages'
+            'ngMessages',
+            'color.picker',
         ])
         .run(appRun);
 
