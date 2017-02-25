@@ -11,7 +11,9 @@
         vm.product = undefined;
         vm.feildInEdit = undefined;
         vm.isLoading = false;
+
         vm.editProduct = editProduct;
+        vm.changeSize = changeSize;
 
         var productId;
 
@@ -40,6 +42,18 @@
                 })
                 .catch(function(err) {
                     //   @TODO: handle he error
+                });
+        }
+
+        function changeSize(size) {
+            var newValue = !vm.product.sizes[size];
+            ProductService
+                .updateSizes(productId, size, newValue)
+                .then(function(res) {
+                    vm.product.sizes[size] = newValue;
+                })
+                .catch(function(err) {
+                    // @TODO: handle the error
                 });
         }
     }

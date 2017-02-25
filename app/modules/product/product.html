@@ -124,6 +124,13 @@
                         </form>
                     </div>
                 </div> <!--/product-price-->
+
+                <!--product-size-->
+                <div class="product-size">
+                    <p><i class="fa fa-hand-o-down" aria-hidden="true"></i>Size</p>
+                    <button type="button" class="size-btn" ng-repeat="(size, value) in ctrl.product.sizes" ng-class="{'selected': value}" ng-click="ctrl.changeSize(size)">{{ size }}</button>
+                </div> <!--/product-size-->
+
             </div>
         </div> <!--/product-details-->
     </div> <!--/row-->
