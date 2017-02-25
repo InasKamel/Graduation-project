@@ -10,15 +10,39 @@
         </div>
         <div class="product-details col-sm-5">
             <div class="details">
-                <p class="product-name">{{ ctrl.product.name }}</p>
-                <p class="product-desc">{{ ctrl.product.desc }}</p>
+                <div class="product-name" ng-hide="ctrl.editIcon == 'product-name'">
+                    <h2>{{ ctrl.product.name }}</h2>
+                    <img ng-src="./assets/images/edit-icon.png" ng-click="ctrl.editIcon = 'product-name'"></img>
+                </div>
+                <div class="editing-product-name" ng-show="ctrl.editIcon == 'product-name'">
+                    <span>Product Name</span>
+                    <textarea ng-model="ctrl.newValue" autofocus></textarea>
+                    <button class="save-btn" ng-click="ctrl.attribute = 'name'; ctrl.editProduct(); ctrl.editIcon = undefined">Save Changes</button>
+                    <button class="cancel-btn" ng-click="ctrl.editIcon = undefined">Cancel</button>
+                </div>
+                <div class="product-desc" ng-hide="ctrl.editIcon == 'product-desc'">
+                    <p>{{ ctrl.product.desc }}</p>
+                    <img ng-src="./assets/images/edit-icon.png" ng-click="ctrl.editIcon = 'product-desc'"></img>
+                </div>
+                <div class="editing-product-desc" ng-show="ctrl.editIcon == 'product-desc'">
+                    <span>Product Desc</span>
+                    <textarea ng-model="ctrl.newValue" autofocus></textarea>
+                    <button class="save-btn" ng-click="ctrl.attribute = 'desc'; ctrl.editProduct(); ctrl.editIcon = undefined">Save Changes</button>
+                    <button class="cancel-btn" ng-click="ctrl.editIcon = undefined">Cancel</button>
+                </div>
                 <div class="product-meta">
                     <span class="likes"><i class="fa fa-heart" aria-hidden="true"></i>{{ ctrl.product.likes }}</span>
                     <span class="views"><i class="fa fa-eye" aria-hidden="true"></i>{{ ctrl.product.views }}</span>
                 </div>
-                <div class="price">
+                <div class="price" ng-hide="editIcon == 'product-price'">
                     <p><i class="fa fa-money"></i>Price</p>
-                    <span>{{ ctrl.product.price }}.0 L.E</span>
+                    <img ng-src="./assets/images/edit-icon.png" ng-click="ctrl.editIcon = 'product-price'"></img>
+                    <p><span>{{ ctrl.product.price }}.0 LE</span></p>
+                </div>
+                <div class="editing-product-price" ng-show="ctrl.editIcon == 'product-price'">
+                    <textarea ng-model="ctrl.newValue" autofocus></textarea>
+                    <button class="save-btn" ng-click="ctrl.attribute = 'price'; ctrl.editProduct(); ctrl.editIcon = undefined">Save Changes</button>
+                    <button class="cancel-btn" ng-click="ctrl.editIcon = undefined">Cancel</button>
                 </div>
                 <div class="product-size">
                     <p><i class="fa fa-hand-o-down" aria-hidden="true"></i>Size</p>

@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     angular
         .module('dashboard')
         .controller('ProductController', ProductController);
@@ -9,10 +8,14 @@
     function ProductController($state, ProductService) {
         var vm = this;
         vm.product = undefined;
+        vm.editIcon = undefined;
+        vm.attribute = undefined;
+        vm.newValue = undefined;
+
+        vm.editProduct = editProduct;
         vm.changeSize = changeSize;
 
         var productId;
-
         init();
 
         function init() {
@@ -25,6 +28,18 @@
                 .catch(function(err) {
                     // @TODO: handle the error
                 });
+        }
+
+        function editProduct() {
+             ProductService
+                .editProduct(productId, vm.attribute, vm.newValue)
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                //   @TODO: handle he error
+                });
+            $state.reload();
         }
 
         function changeSize(size) {
