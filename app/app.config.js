@@ -4,7 +4,7 @@
     angular
         .module('dashboard')
         .config(appConfiguration);
-    
+
     appConfiguration.$inject = ['$authProvider', '$urlRouterProvider'];
     function appConfiguration($authProvider, $urlRouterProvider) {
         // Satellizer
