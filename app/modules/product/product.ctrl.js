@@ -9,8 +9,8 @@
     function ProductController($state, ProductService) {
         var vm = this;
         vm.product = undefined;
-        vm.editIcon = undefined;
-        vm.newValue = undefined;
+        vm.feildInEdit = undefined;
+        vm.isLoading = false;
         vm.editProduct = editProduct;
 
         var productId;
@@ -29,13 +29,14 @@
                 });
         }
 
-        function editProduct(attribute) {
-             ProductService
-                .editProduct(productId, attribute, vm.newValue)
+        function editProduct(attribute, newValue) {
+            vm.isLoading = true;
+            ProductService
+                .editProduct(productId, attribute, newValue)
                 .then(function(res) {
-                    vm.product[attribute] = vm.newValue;
-                    vm.editIcon = undefined;
-                    vm.newValue = undefined;
+                    vm.product[attribute] = newValue;
+                    vm.feildInEdit = undefined;
+                    vm.isLoading = false;
                 })
                 .catch(function(err) {
                     //   @TODO: handle he error

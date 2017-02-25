@@ -5,14 +5,15 @@
         .module('dashboard', [
             'satellizer',
             'ui.router',
+            'ngMessages'
         ])
         .run(appRun);
-    
+
     appRun.$inject = ['$rootScope', '$auth', '$state', '$location'];
     function appRun($rootScope, $auth, $state, $location) {
         $rootScope.homepage = 'dashboard.template';
         $rootScope.$on('$stateChangeStart', onStateChange);
-        
+
         function onStateChange(e, toState, toParams, fromState) {
             var isProtected = toState.data && toState.data.protected;
             if(isProtected && !$auth.isAuthenticated()) {
