@@ -29,24 +29,25 @@
                     return $q.reject(err);
                 });
         }
+
         function editProduct(productId, attribute, newValue) {
             var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId;
             var req = {
                 method: 'PATCH',
                 url: endpointURL,
-                data: {
-                },
                 headers: {},
+                data: {},
             };
-            req.data[attribute]=newValue;
+
+            req.data[attribute] = newValue;
 
             return $http(req)
-               .then(function(res) {
-                return res;
-            })
-            .catch(function(err) {
-                return $q.reject(err);
-            });
+                .then(function(res) {
+                    return res;
+                })
+                .catch(function(err) {
+                    return $q.reject(err);
+                });
         }
     }
 })();
