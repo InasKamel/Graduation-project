@@ -9,13 +9,12 @@
     function ListProductsController($state, ListProductsService) {
         var vm = this;
         vm.products = [];
-
         init();
 
         function init() {
             var categoryId = $state.params.id;
             ListProductsService
-                .getProducts(categoryId)
+                .getProducts(vm.categoryId)
                 .then(function(res) {
                     vm.products = res.data.products;
                 })
