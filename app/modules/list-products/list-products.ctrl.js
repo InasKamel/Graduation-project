@@ -9,10 +9,11 @@
     function ListProductsController($state, ListProductsService) {
         var vm = this;
         vm.products = [];
+        vm.categoryId = undefined;
         init();
 
         function init() {
-            var categoryId = $state.params.id;
+            vm.categoryId = $state.params.id;
             ListProductsService
                 .getProducts(vm.categoryId)
                 .then(function(res) {
