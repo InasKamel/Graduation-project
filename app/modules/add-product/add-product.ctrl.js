@@ -44,24 +44,24 @@
                 }
             }
             function changeSize(size) {
-            var newValue = !vm.productSizes[size];
-            vm.productSizes[size] = newValue;
+                var newValue = !vm.productSizes[size];
+                vm.productSizes[size] = newValue;
+            }
+            function addProduct() {
+                var newProduct = {
+                    name: vm.productName,
+                    desc: vm.productDesc,
+                    price: vm.productPrice,
+                    colors: vm.productColors,
+                    sizes: vm.productSizes
+                };
+                AddProductService
+                    .addProduct(newProduct)
+                    .then(function(res) {
+                    })
+                    .catch(function(err) {
+                        // @TODO: handle the error
+                    });
+            }
         }
-        function addProduct() {
-            var newProduct = {
-                name: vm.productName,
-                desc: vm.productDesc,
-                price: vm.productPrice,
-                colors: vm.productColors,
-                sizes: vm.productSizes
-            };
-            AddProductService
-                .addProduct(newProduct)
-                .then(function(res) {
-                })
-                .catch(function(err) {
-                    // @TODO: handle the error
-                });
-        }
-    }
 })();
