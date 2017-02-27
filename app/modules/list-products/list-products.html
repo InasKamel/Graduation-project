@@ -1,4 +1,9 @@
 <div id="list-products-module">
+    <!--temporary modification-->
+    <div class="add-product-icon">
+        <a ui-sref="dashboard.add-product({ id: ctrl.categoryId} )"><img src="./assets/images/add-icon.png" style="height: 100px">
+    </div>
+    <!--/temporary modification-->
     <div ng-repeat="product in ctrl.products" ui-sref="dashboard.product({ id: product.id })">
         <div class="product">
             <div class="image">
