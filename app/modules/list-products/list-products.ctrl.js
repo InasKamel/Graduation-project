@@ -10,6 +10,7 @@
         var vm = this;
         vm.products = [];
         vm.categoryId = undefined;
+        
         init();
 
         function init() {

@@ -6,6 +6,7 @@
         .config(routes);
 
     routes.$inject = ['$stateProvider'];
+
     function routes($stateProvider) {
         $stateProvider
             .state('dashboard.list-products', {
