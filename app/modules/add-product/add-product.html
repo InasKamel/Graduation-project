@@ -1,81 +1,108 @@
-<div id="add-product-module">
+<div id="product-module">
+    <div class="back-btn" ui-sref="dashboard.list-products({ id: ctrl.categoryId })">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </div>
     <div class="row">
         <div class="product-image col-sm-7">
-                <img ng-src="./assets/images/add-icon.png">
+            <div class="product-display">
+                <!--<img ng-src="{{ ctrl.product.image }}">-->
+            </div>
         </div>
-        <div class="product-details col-sm-5">
-            <form name="productDetailsForm">
-                <!--product-name-->
-                <div class="product-name">
-                    <p>Product Name</p>
-                        <input type="text" name="name" ng-model="ctrl.productName" placeholder="Add name" required autofocus>
-                        <div class="messages" ng-messages="productDetailsForm.name.$error">
-                            <p ng-message="required">Name is required</p>
+        <div class="product-details col-sm-5" slimscroll="{ height: 'auto' }">
+            <div class="details">
+                <form name="productForm">
+                    <!--product-name-->
+                    <div class="product-name">
+                        <div class="field-editing">
+                            <p>Product name</p>
+                            <input type="text" name="name" ng-model="ctrl.product.name" autofocus required>
+                            <div class="messages" ng-messages="productForm.name.$touched && productForm.name.$error">
+                                <p ng-message="required">Name is required</p>
+                            </div>
                         </div>
-                </div>
+                    </div> <!--/product-name-->
+
                     <!--product-desc-->
                     <div class="product-desc">
-                        <p>Product Description <span>(optional)</span> </p>
-                            <textarea name="desc" ng-model="ctrl.productDesc" ng-maxlength="180" placeholder="Add description of product"></textarea>
-                            <span class="textarea-counter">{{ 180 - productDetailsForm.desc.$viewValue.length || 0}}</span>
-                    </div>
+                        <div class="field-editing">
+                            <p>Product description</p>
+                            <textarea name="desc" ng-model="ctrl.product.desc" autofocus></textarea>
+                            <div class="messages" ng-messages="productForm.desc.$touched && productForm.desc.$error">
+                            </div>
+                        </div>
+                    </div> <!--/product-desc-->
+
                     <!--product-price-->
                     <div class="product-price">
-                        <p>Price</p>
-                            <input type="number" name="price" step="0.01" ng-model="ctrl.productPrice" placeholder="Add price" required>
-                            <div class="messages" ng-messages="productDetailsForm.price.$error">
+                        <p><i class="fa fa-money"></i>Price</p>
+                        <div class="field-editing">
+                            <input type="number" step="0.01" name="price" ng-model="ctrl.product.price" autofocus required>
+                            <div class="messages" ng-messages="productForm.price.$touched && productForm.price.$error">
                                 <p ng-message="required">Price is required</p>
+                                <p ng-message="number">Price should be a number</p>
                             </div>
-                    </div>
+                        </div>
+                    </div> <!--/product-price-->
+
                     <!--product-colors-->
                     <div class="product-colors">
-                        <p>Colors</p>
+                        <p><i class="fa fa-paint-brush"></i>Colors</p>
                         <div class="colors">
                             <div
                                 class="color"
-                                ng-repeat="color in ctrl.productColors track by $index"
+                                ng-repeat="color in ctrl.product.colors track by $index"
                                 ng-style="{ 'background-color': color }"
+                                ng-class="{ 'disabled': ctrl.isLoading }"
                                 ng-click="ctrl.deleteColor(color)">
-                                <div class="delete">
+                                    <div class="delete">
                                         <i class="fa fa-trash"></i>
-                                </div>
+                                    </div>
                             </div>
-                        <div class="add-color" ng-click="ctrl.fieldInEdit = 'new-color'" ng-hide="ctrl.fieldInEdit === 'new-color'">
-                                    <i class="fa fa-plus"></i>
                         </div>
+                        <div class="new-color field-editing">
+                            <p>Add new color</p>
+                            <color-picker
+                                ng-model="ctrl.colorPickerValue"
+                                options="ctrl.colorPickerOptions">
+                            </color-picker>
+                            <div class="btns">
+                                <button
+                                    ng-disabled="ctrl.isLoading"
+                                    ng-click="ctrl.addColor()"
+                                    class="save-btn"><i class="fa fa-plus"></i>Add</button>
+                            </div>
                         </div>
-                    <div class="new-color field-editing" ng-show="ctrl.fieldInEdit === 'new-color'">
-                        <color-picker
-                            ng-model="ctrl.colorPickerValue"
-                            options="ctrl.colorPickerOptions">
-                        </color-picker>
-                        <div class="btns">
-                            <button
-                                ng-click="ctrl.addColor()"
-                                class="save-btn"><i class="fa fa-plus"></i>Add</button>
-                            <button
-                                ng-click="ctrl.fieldInEdit = undefined"
-                                class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
-                        </div>
-                    </div>
-                    </div><!--product-colors-->
+                    </div> <!--/product-colors-->
+
                     <!--product-sizes-->
                     <div class="product-sizes">
                         <p><i class="fa fa-th" aria-hidden="true"></i>Sizes</p>
                         <div class="btns">
                             <button
                                 class="size-btn"
-                                ng-repeat="(size, value) in ctrl.productSizes"
+                                ng-disabled="ctrl.isLoading"
+                                ng-repeat="(size, value) in ctrl.product.sizes"
                                 ng-class="{ 'selected': value }"
                                 ng-click="ctrl.changeSize(size)">{{ size }}</button>
                         </div>
                     </div> <!--/product-size-->
-                    <div class="add-product-btn">
-                        <button  ng-disabled="productDetailsForm.$invalid" ng-click="ctrl.addProduct()"><i class="fa fa-plus"></i>Add Product</button>
+
+                    <div class="field-editing" style="margin: 30px 0;">
+                        <div class="btns">
+                            <div class="spinner" ng-show="ctrl.isLoading">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                            <button
+                                type="submit"
+                                ng-disabled="ctrl.isLoading || productForm.price.$invalid"
+                                ng-click="ctrl.addProduct();"
+                                class="save-btn"><i class="fa fa-plus"></i>Add product</button>
+                        </div>
                     </div>
                 </form>
-            </div><!--/product-details-->
             </div>
-        </div>
-    </div>
-</div>
+        </div> <!--/product-details-->
+    </div> <!--/row-->
+</div> <!--/product-module-->

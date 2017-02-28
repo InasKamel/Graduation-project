@@ -10,7 +10,7 @@
         function routes($stateProvider) {
             $stateProvider
                 .state('dashboard.add-product', {
-                    url: '/add-product/:id',
+                    url: '/list-products/:id/new',
                     templateUrl: 'modules/add-product/add-product.html',
                     controller: 'AddProductController as ctrl'
                 });

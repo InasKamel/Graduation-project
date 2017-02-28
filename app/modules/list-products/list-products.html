@@ -1,9 +1,12 @@
 <div id="list-products-module">
-    <!--temporary modification-->
-    <div class="add-product-icon">
-        <a ui-sref="dashboard.add-product({ id: ctrl.categoryId} )"><img src="./assets/images/add-icon.png" style="height: 100px">
-    </div>
-    <!--/temporary modification-->
+    <!--product-controls-->
+    <div class="products-controls">
+        <a class="btn add-btn" ui-sref="dashboard.add-product({ id: ctrl.categoryId })">
+            <p><i class="fa fa-plus"></i> Add new product</p>
+        </a>
+    </div><!--/product-controls-->
+
+    <!--list-of-products-->
     <div ng-repeat="product in ctrl.products" ui-sref="dashboard.product({ id: product.id })">
         <div class="product">
             <div class="image">
@@ -17,5 +20,5 @@
                 <p>{{ product.name }}</p>
             </div>
         </div>
-    </div>
+    </div><!--list-of-products-->
 </div>

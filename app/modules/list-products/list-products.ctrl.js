@@ -8,9 +8,9 @@
     ListProductsController.$inject = ['$state', 'ListProductsService'];
     function ListProductsController($state, ListProductsService) {
         var vm = this;
-        vm.products = [];
         vm.categoryId = undefined;
-        
+        vm.products = [];
+
         init();
 
         function init() {

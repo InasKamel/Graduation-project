@@ -5,63 +5,69 @@
         .module('dashboard')
         .controller('AddProductController', AddProductController);
 
-        AddProductController.$inject = ['$state', 'AddProductService'];
+    AddProductController.$inject = ['$state', 'AddProductService'];
+    function AddProductController($state, AddProductService) {
+        var vm = this;
+        vm.categoryId = undefined;
+        vm.isLoading = false;
 
-        function AddProductController($state, AddProductService) {
-            var vm = this;
-            vm.fieldInEdit = undefined;
-
-            vm.colorPickerValue = '#FF0000';
-            vm.colorPickerOptions = {
-            format: 'hex',
-        };
-            vm.productName = undefined;
-            vm.productDesc = undefined;
-            vm.productPrice = undefined;
-            vm.productColors = [];
-            vm.productSizes = {
+        vm.product = {
+            name: '',
+            desc: '',
+            price: '',
+            colors: [],
+            sizes: {
                 s: false,
                 m: false,
                 l: false,
                 xl: false,
                 xxl: false,
                 xxxl: false
-            };
+            }
+        };
 
-            vm.addColor = addColor;
-            vm.deleteColor = deleteColor;
-            vm.changeSize = changeSize;
-            vm.addProduct = addProduct;
-            
-            function addColor() {
-                vm.productColors.push(vm.colorPickerValue);
-                vm.fieldInEdit = undefined;
-            }
-            function deleteColor(color) {
-                var index;
-                while((index = vm.productColors.indexOf(color)) !== -1) {
-                    vm.productColors.splice(index, 1);
-                }
-            }
-            function changeSize(size) {
-                var newValue = !vm.productSizes[size];
-                vm.productSizes[size] = newValue;
-            }
-            function addProduct() {
-                var newProduct = {
-                    name: vm.productName,
-                    desc: vm.productDesc,
-                    price: vm.productPrice,
-                    colors: vm.productColors,
-                    sizes: vm.productSizes
-                };
-                AddProductService
-                    .addProduct(newProduct)
-                    .then(function(res) {
-                    })
-                    .catch(function(err) {
-                        // @TODO: handle the error
-                    });
+        vm.colorPickerValue = '#FF0000';
+        vm.colorPickerOptions = {
+            format: 'hex',
+        };
+
+        vm.addColor = addColor;
+        vm.deleteColor = deleteColor;
+        vm.changeSize = changeSize;
+        vm.addProduct = addProduct;
+
+        init();
+
+        function init() {
+            vm.categoryId = $state.params.id;
+        }
+
+        function addColor() {
+            vm.product.colors.push(vm.colorPickerValue);
+        }
+
+        function deleteColor(color) {
+            var index;
+            while((index = vm.product.colors.indexOf(color)) !== -1) {
+                vm.product.colors.splice(index, 1);
             }
         }
+
+        function changeSize(size) {
+            var newValue = !vm.product.sizes[size];
+            vm.product.sizes[size] = newValue;
+        }
+
+        function addProduct() {
+            vm.isLoading = true;
+            AddProductService
+                .addProduct(vm.categoryId, vm.product)
+                .then(function(res) {
+                    $state.go('dashboard.list-products', { id: vm.categoryId });
+                })
+                .catch(function(err) {
+                    // @TODO: handle the error
+                });
+        }
+    }
 })();
