@@ -5,18 +5,21 @@
         .module('dashboard')
         .factory('SettingsService', SettingsService);
 
-    SettingsService.$inject = ['$http', '$q'];
-    function SettingsService($http, $q) {
+    SettingsService.$inject = ['$http', '$q', 'endpointURLService'];
+    function SettingsService($http, $q, endpointURLService) {
         var methods = {
             editSettings: editSettings,
         };
         return methods;
 
         function editSettings(attribute, newValue) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/settings';
+            var endpoint = {
+                url: endpointURLService.Settings.url,
+                method: endpointURLService.Settings.method
+            };
             var req = {
-                method: 'PATCH',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
                 data: {},
             };

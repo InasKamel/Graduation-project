@@ -5,8 +5,9 @@
         .module('dashboard')
         .factory('ProductService', ProductService);
 
-    ProductService.$inject = ['$http', '$q'];
-    function ProductService($http, $q) {
+    ProductService.$inject = ['$http', '$q', 'endpointURLService'];
+
+    function ProductService($http, $q, endpointURLService) {
         var methods = {
             getProduct: getProduct,
             editProduct: editProduct,
@@ -14,13 +15,18 @@
             deleteColor: deleteColor,
             addColor: addColor
         };
+
         return methods;
 
         function getProduct(productId) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId;
+            endpointURLService.Product.url[1] = productId;
+            var endpoint = {
+                url: endpointURLService.Product.url.join(''),
+                method: endpointURLService.Product.method[0]
+            };
             var req = {
-                method: 'GET',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
             };
 
@@ -34,10 +40,14 @@
         }
 
         function editProduct(productId, attribute, newValue) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId;
+            endpointURLService.Product.url[1] = productId;
+            var endpoint ={
+                url: endpointURLService.Product.url.join(''),
+                method: endpointURLService.Product.method[1]
+            };
             var req = {
-                method: 'PATCH',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
                 data: {},
             };
@@ -54,10 +64,14 @@
         }
 
         function updateSizes(productId, size, value) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId + '/sizes';
+            endpointURLService.UpdateSizes.url[1] = productId;
+            var endpoint = {
+                url: endpointURLService.UpdateSizes.url.join(''),
+                method: endpointURLService.UpdateSizes.method
+            };
             var req = {
-                method: 'PATCH',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
                 data: {},
             };
@@ -74,10 +88,14 @@
         }
 
         function deleteColor(productId, color) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId + '/colors';
+            endpointURLService.Color.url[1] = productId;
+            var endpoint = {
+                url: endpointURLService.Color.url.join(''),
+                method: endpointURLService.Color.method[0]
+            };
             var req = {
-                method: 'DELETE',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {
                     'Content-type': 'application/json;charset=utf-8'
                 },
@@ -96,10 +114,14 @@
         }
 
         function addColor(productId, color) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/products/' + productId + '/colors';
+            endpointURLService.Color.url[1] = productId;
+            var endpoint = {
+                url: endpointURLService.Color.url.join(''),
+                method: endpointURLService.Color.method[1]
+            };
             var req = {
-                method: 'POST',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
                 data: {
                     value: color,

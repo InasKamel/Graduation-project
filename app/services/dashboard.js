@@ -5,8 +5,9 @@
         .module('dashboard')
         .factory('DashboardService', DashboardService);
 
-    DashboardService.$inject = ['$http', '$q'];
-    function DashboardService($http, $q) {
+    DashboardService.$inject = ['$http', '$q', 'endpointURLService'];
+
+    function DashboardService($http, $q, endpointURLService) {
         var methods = {
             getShopInfo: getShopInfo,
             getCategories: getCategories,
@@ -14,10 +15,13 @@
         return methods;
 
         function getShopInfo() {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/shop_info';
+            var endpoint ={ 
+                url: endpointURLService.ShopInfo.url,
+                method: endpointURLService.ShopInfo.method
+            };
             var req = {
-                method: 'GET',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
             };
 
@@ -31,10 +35,13 @@
         }
 
         function getCategories() {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/categories';
+            var endpoint ={ 
+                url: endpointURLService.Categories.url,
+                method: endpointURLService.Categories.method
+            };
             var req = {
-                method: 'GET',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
             };
 

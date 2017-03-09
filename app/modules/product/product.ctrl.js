@@ -6,24 +6,22 @@
         .controller('ProductController', ProductController);
 
     ProductController.$inject = ['$state', 'ProductService'];
+
     function ProductController($state, ProductService) {
         var vm = this;
+        var productId;
         vm.product = undefined;
         vm.feildInEdit = undefined;
         vm.isLoading = false;
-
         vm.colorPickerValue= '#FF0000';
         vm.colorPickerOptions = {
             format: 'hex',
             disabled: vm.isLoading,
         };
-
         vm.editProduct = editProduct;
         vm.changeSize = changeSize;
         vm.deleteColor = deleteColor;
         vm.addColor = addColor;
-
-        var productId;
 
         init();
 

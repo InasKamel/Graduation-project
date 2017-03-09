@@ -5,12 +5,12 @@
         .module('dashboard')
         .controller('AddProductController', AddProductController);
 
-    AddProductController.$inject = ['$state', 'AddProductService'];
-    function AddProductController($state, AddProductService) {
+    AddProductController.$inject = ['$state', 'addProductService'];
+
+    function AddProductController($state, addProductService) {
         var vm = this;
         vm.categoryId = undefined;
         vm.isLoading = false;
-
         vm.product = {
             name: '',
             desc: '',
@@ -25,12 +25,10 @@
                 xxxl: false
             }
         };
-
         vm.colorPickerValue = '#FF0000';
         vm.colorPickerOptions = {
             format: 'hex',
         };
-
         vm.addColor = addColor;
         vm.deleteColor = deleteColor;
         vm.changeSize = changeSize;
@@ -60,7 +58,8 @@
 
         function addProduct() {
             vm.isLoading = true;
-            AddProductService
+
+            addProductService
                 .addProduct(vm.categoryId, vm.product)
                 .then(function(res) {
                     $state.go('dashboard.list-products', { id: vm.categoryId });

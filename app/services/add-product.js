@@ -3,20 +3,26 @@
 
     angular
         .module('dashboard')
-        .factory('AddProductService', AddProductService);
+        .factory('addProductService', addProductService);
 
-    AddProductService.$inject = ['$http', '$q'];
-    function AddProductService($http, $q) {
+    addProductService.$inject = ['$http', '$q', 'endpointURLService'];
+
+    function addProductService($http, $q, endpointURLService) {
         var methods = {
             addProduct: addProduct,
         };
+
         return methods;
 
         function addProduct(categoryId, productData) {
-            var endpointURL = 'https://octana.herokuapp.com/api/v1/fe/categories/' + categoryId;
+            endpointURLService.ListProducts.url[1] = categoryId;
+            var endpoint ={ 
+                url: endpointURLService.ListProducts.url.join(''),
+                method: endpointURLService.ListProducts.method[0]
+            };
             var req = {
-                method: 'POST',
-                url: endpointURL,
+                url: endpoint.url,
+                method: endpoint.method,
                 headers: {},
                 data: productData,
             };

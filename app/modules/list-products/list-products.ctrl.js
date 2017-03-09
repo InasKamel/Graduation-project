@@ -5,17 +5,18 @@
         .module('dashboard')
         .controller('ListProductsController', ListProductsController);
 
-    ListProductsController.$inject = ['$state', 'ListProductsService'];
-    function ListProductsController($state, ListProductsService) {
+    ListProductsController.$inject = ['$state', 'listProductsService'];
+
+    function ListProductsController($state, listProductsService) {
         var vm = this;
         vm.categoryId = undefined;
         vm.products = [];
-
+ 
         init();
 
         function init() {
             vm.categoryId = $state.params.id;
-            ListProductsService
+            listProductsService
                 .getProducts(vm.categoryId)
                 .then(function(res) {
                     vm.products = res.data.products;
