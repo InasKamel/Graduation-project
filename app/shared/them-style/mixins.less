@@ -1,0 +1,29 @@
+.transation(@size: 400ms) {
+    -webkit-transition: all @size;
+    -moz-transition: all @size;
+    -o-transition: all @size;
+    transition: all @size;
+}
+
+.rounded-corner(@value: 4px) {
+    -webkit-border-radius: @value;
+    -moz-border-radius: @value;
+    border-radius: @value;
+}
+
+.dimensions(@width: 100%, @height: 100%) {
+    width: @width;
+    height: @height;
+}
+
+.push-round(@top, @left, @right) {
+    top: @top;
+    left: @left;
+    right: @right;
+}
+
+.font(@size: 22px, @Font-weight: bold) {
+    font-size: @size;
+    font-weight: @Font-weight;
+}
+

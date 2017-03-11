@@ -1,3 +1,8 @@
+@path:"app/shared/them-style/";
+@import "@{path}/mixins";
+@import "@{path}/variables";
+@import "@{path}/colors";
+
 #settings-module {
     .shop-logo {
         text-align: center;
@@ -28,21 +33,16 @@
 #settings-module .shop-details .edit-btn {
     display: none;
     position: absolute;
-    top: 0;
-    right: 0;
+    .push-round(0,none,0);
     padding: 5px 7px 0px 6px;
     border-radius: 3px;
     font-size: 16px !important;
     float: right;
     cursor: pointer;
-    color: #666;
-    border: 1px solid #DDD;
-    background-color: #FFF;
-
-    -webkit-transition: all 400ms;
-    -moz-transition: all 400ms;
-    -o-transition: all 400ms;
-    transition: all 400ms;
+    color: @gray;
+    border: 1px solid  @white;
+    background-color: @white;
+    .transation;
 
     span {
         display: inline-block;
@@ -51,11 +51,7 @@
         opacity: 0;
         max-width: 0px;
         overflow: hidden;
-
-        -webkit-transition: all 400ms;
-        -moz-transition: all 400ms;
-        -o-transition: all 400ms;
-        transition: all 400ms;
+        .transation;
     }
 
     i {
@@ -73,23 +69,22 @@
 }
 
 #settings-module .shop-details .field-editing {
-    background-color:#F1F1F1;
+    background-color:@white;
     padding: 15px;
 
     p {
         margin-bottom: 5px;
-        font-size:16px;
-        font-weight: bold;
+        .font(16px,bold);
     }
 
     textarea, input {
-        width: 100%;
+        width: 100%;     
         resize: none;
         padding: 7px 9px;
         margin-bottom: 5px;
         font-size: 14px;
         box-shadow: none;
-        border: solid 1px #DCDCDC;
+        border: solid 1px @white;
 
         &:focus {
             outline: none;
@@ -111,11 +106,10 @@
     .messages {
         margin-top: 3px;
         p {
-            font-size: 15px;
+            .font(15px,normal);
             padding: 7px 9px;
-            background-color: #FFDDDD;
-            color: #EE0000;
-            font-weight: normal;
+            background-color: @red-light;
+            color:@red;
         }
     }
 
@@ -125,39 +119,34 @@
             padding: 5px 10px;
             margin: 5px 0 2px 5px;
             font-size: 13px;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            -webkit-transition: all 400ms;
-            -moz-transition: all 400ms;
-            -o-transition: all 400ms;
-            transition: all 400ms;
+            .rounded-corner(3px);
+            .transation;
 
             &:focus {
                 outline: none;
             }
 
             &.save-btn {
-                color: #FFF;
-                background-color:#3498DB;
+                color: @white;
+                background-color: @dodgerblue;
                 border: none;
                 &:hover {
-                    background-color: #6fa8dc;
+                    background-color: @lightskyblue;
                 }
                 &:disabled {
-                    background: #999;
+                    background: @gray-light;
                     cursor: wait;
                 }
             }
 
             &.cancel-btn {
-                color:#696969;
-                border: solid 1px #DCDCDC;
-                background-color:#F5F5F5;
+                color:@gray-dark;
+                border: solid 1px @white;
+                background-color: @white;
                 &:hover {
-                    color: #444;
-                    border-color: #CCC;
-                    background-color:#F0F0F0;
+                    color: @gray-dark;
+                    border-color: @white;
+                    background-color: @white;
                 }
             }
         }
