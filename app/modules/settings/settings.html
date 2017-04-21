@@ -36,7 +36,7 @@
                                 <button
                                     type="submit"
                                     ng-disabled="ctrl.isLoading || shopPhoneForm.name.$invalid"
-                                    ng-click="ctrl.editSettings('phone', phone.newValue);"
+                                    ng-click="ctrl.updateShopInfo('phone', phone.newValue);"
                                     class="save-btn"><i class="fa fa-save"></i>Save changes</button>
                                 <button
                                     ng-disabled="ctrl.isLoading"
@@ -73,7 +73,7 @@
                                 <button
                                     type="submit"
                                     ng-disabled="ctrl.isLoading || shopEmailForm.name.$invalid"
-                                    ng-click="ctrl.editSettings('email', email.newValue);"
+                                    ng-click="ctrl.updateShopInfo('email', email.newValue);"
                                     class="save-btn"><i class="fa fa-save"></i>Save changes</button>
                                 <button
                                     ng-disabled="ctrl.isLoading"

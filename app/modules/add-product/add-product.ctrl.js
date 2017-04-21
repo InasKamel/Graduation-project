@@ -5,8 +5,8 @@
         .module('dashboard')
         .controller('AddProductController', AddProductController);
 
-    AddProductController.$inject = ['$state', 'AddProductService'];
-    function AddProductController($state, AddProductService) {
+    AddProductController.$inject = ['$state', 'ProductService'];
+    function AddProductController($state, ProductService) {
         var vm = this;
         vm.categoryId = undefined;
         vm.isLoading = false;
@@ -15,14 +15,16 @@
             name: '',
             desc: '',
             price: '',
-            colors: [],
-            sizes: {
-                s: false,
-                m: false,
-                l: false,
-                xl: false,
-                xxl: false,
-                xxxl: false
+            dynamicFields: {
+                colors: [],
+                sizes: {
+                    s: false,
+                    m: false,
+                    l: false,
+                    xl: false,
+                    xxl: false,
+                    xxxl: false
+                }
             }
         };
 
@@ -43,25 +45,30 @@
         }
 
         function addColor() {
-            vm.product.colors.push(vm.colorPickerValue);
+            vm.product.dynamicFields.colors.push({
+                value: vm.colorPickerValue
+            });
         }
 
         function deleteColor(color) {
             var index;
-            while((index = vm.product.colors.indexOf(color)) !== -1) {
-                vm.product.colors.splice(index, 1);
+            for(var i = 0; i < vm.product.dynamicFields.colors.length; i++) {
+                if(vm.product.dynamicFields.colors[i].value === color) {
+                    vm.product.dynamicFields.colors.splice(i, 1);
+                    i--;
+                }
             }
         }
 
         function changeSize(size) {
-            var newValue = !vm.product.sizes[size];
-            vm.product.sizes[size] = newValue;
+            var newValue = !vm.product.dynamicFields.sizes[size];
+            vm.product.dynamicFields.sizes[size] = newValue;
         }
 
         function addProduct() {
             vm.isLoading = true;
-            AddProductService
-                .addProduct(vm.categoryId, vm.product)
+            ProductService
+                .createProduct(vm.categoryId, vm.product)
                 .then(function(res) {
                     $state.go('dashboard.list-products', { id: vm.categoryId });
                 })

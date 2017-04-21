@@ -5,19 +5,19 @@
         .module('dashboard')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['DashboardService', 'SettingsService'];
-    function SettingsController(DashboardService, SettingsService) {
+    SettingsController.$inject = ['ShopService'];
+    function SettingsController(ShopService) {
         var vm = this;
         vm.shop = undefined;
         vm.feildInEdit = undefined;
         vm.isLoading = false;
 
-        vm.editSettings = editSettings;
+        vm.updateShopInfo = updateShopInfo;
 
         init();
 
         function init() {
-            DashboardService
+            ShopService
                 .getShopInfo()
                 .then(function(res) {
                     vm.shop = res.data;
@@ -27,10 +27,10 @@
                 });
         }
 
-        function editSettings(attribute, newValue) {
+        function updateShopInfo(attribute, newValue) {
             vm.isLoading = true;
-            SettingsService
-                .editSettings(attribute, newValue)
+            ShopService
+                .updateShopInfo(attribute, newValue)
                 .then(function(res) {
                     vm.shop[attribute] = newValue;
                     vm.feildInEdit = undefined;

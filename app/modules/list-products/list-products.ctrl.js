@@ -5,8 +5,8 @@
         .module('dashboard')
         .controller('ListProductsController', ListProductsController);
 
-    ListProductsController.$inject = ['$state', 'ListProductsService'];
-    function ListProductsController($state, ListProductsService) {
+    ListProductsController.$inject = ['$state', 'ProductService'];
+    function ListProductsController($state, ProductService) {
         var vm = this;
         vm.categoryId = undefined;
         vm.products = [];
@@ -15,10 +15,10 @@
 
         function init() {
             vm.categoryId = $state.params.id;
-            ListProductsService
+            ProductService
                 .getProducts(vm.categoryId)
                 .then(function(res) {
-                    vm.products = res.data.products;
+                    vm.products = res.data;
                 })
                 .catch(function(err) {
                     // @TODO: handle the error

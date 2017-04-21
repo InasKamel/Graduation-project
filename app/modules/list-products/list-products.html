@@ -10,12 +10,12 @@
     <div ng-repeat="product in ctrl.products" ui-sref="dashboard.product({ id: product.id })">
         <div class="product">
             <div class="image">
-                <img ng-src="{{ product.image }}">
+                <img ng-src="{{ product.images[0].thumb }}">
             </div>
             <div class="details">
                 <div class="meta">
-                    <p class="views"><i class="fa fa-eye"></i> {{ product.views }}</p>
-                    <p class="likes"><i class="fa fa-heart"></i> {{ product.likes }}</p>
+                    <p class="views"><i class="fa fa-eye"></i> {{ product.meta.views }}</p>
+                    <p class="likes"><i class="fa fa-heart"></i> {{ product.meta.likes }}</p>
                 </div>
                 <p>{{ product.name }}</p>
             </div>

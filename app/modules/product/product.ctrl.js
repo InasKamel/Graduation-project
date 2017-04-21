@@ -18,9 +18,9 @@
             disabled: vm.isLoading,
         };
 
-        vm.editProduct = editProduct;
+        vm.updateProduct = updateProduct;
         vm.changeSize = changeSize;
-        vm.deleteColor = deleteColor;
+        vm.removeColor = removeColor;
         vm.addColor = addColor;
 
         var productId;
@@ -39,10 +39,10 @@
                 });
         }
 
-        function editProduct(attribute, newValue) {
+        function updateProduct(attribute, newValue) {
             vm.isLoading = true;
             ProductService
-                .editProduct(productId, attribute, newValue)
+                .updateProduct(productId, attribute, newValue)
                 .then(function(res) {
                     vm.product[attribute] = newValue;
                     vm.feildInEdit = undefined;
@@ -55,11 +55,11 @@
 
         function changeSize(size) {
             vm.isLoading = true;
-            var newValue = !vm.product.sizes[size];
+            var newValue = !vm.product.dynamicFields.sizes[size];
             ProductService
                 .updateSizes(productId, size, newValue)
                 .then(function(res) {
-                    vm.product.sizes[size] = newValue;
+                    vm.product.dynamicFields.sizes[size] = newValue;
                     vm.isLoading = false;
                 })
                 .catch(function(err) {
@@ -67,14 +67,16 @@
                 });
         }
 
-        function deleteColor(color) {
+        function removeColor(colorId) {
             vm.isLoading = true;
             ProductService
-                .deleteColor(productId, color)
+                .removeColor(productId, colorId)
                 .then(function(res) {
-                    var index;
-                    while((index = vm.product.colors.indexOf(color)) !== -1) {
-                        vm.product.colors.splice(index, 1);
+                    for(var i = 0; i < vm.product.dynamicFields.colors.length; i++) {
+                        if(vm.product.dynamicFields.colors[i].id === colorId) {
+                            vm.product.dynamicFields.colors.splice(i, 1);
+                            break;
+                        }
                     }
                     vm.isLoading = false;
                 })
@@ -88,7 +90,7 @@
             ProductService
                 .addColor(productId, vm.colorPickerValue)
                 .then(function(res) {
-                    vm.product.colors.push(vm.colorPickerValue);
+                    vm.product.dynamicFields.colors.push(res.data);
                     vm.feildInEdit = undefined;
                     vm.isLoading = false;
                 })

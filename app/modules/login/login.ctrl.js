@@ -24,7 +24,6 @@
                 })
                 .catch(function(err) {
                     vm.loading = false;
-                    console.log(err);
                     vm.message = err.data.message;
                 });
         }

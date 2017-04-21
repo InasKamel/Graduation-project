@@ -10,23 +10,22 @@
         var vm = this;
         vm.sayHello = sayHello;
         vm.testService = testService;
-        
+
         testService();
-        
+
         function sayHello() {
             return 'Welcome !';
         }
 
         function testService() {
-            // TemplateService.callBackend({
-            //     data: 'data'
-            // })
-            // .then(function(res) {
-            //     console.log(res.data);
-            // })
-            // .catch(function(err) {
-            //     console.log(err.data);
-            // });
+            TemplateService
+                .callBackend()
+                .then(function(res) {
+                    // console.log(res.data);
+                })
+                .catch(function(err) {
+                    // console.log(err);
+                });
         }
     }
 })();
