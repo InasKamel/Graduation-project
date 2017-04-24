@@ -1,61 +1,67 @@
 <div id="dashboard">
-    <div id="sidebar">
-        <div class="logo">
-            <a ui-sref="{{ homepage }}"><img ng-src="./assets/images/logo.png"></a>
-        </div>
-        <div class="menu">
-            <div class="collapse-menu">
-                <div class="menu-btn collapsed" data-toggle="collapse" href="#collapse-sidebar-menu">
-                    <i class="fa fa-th" aria-hidden="true"></i>
-                    <span>Products</span>
-                    <i class="dropdown-icon fa fa-angle-down" aria-hidden="true"></i>
-                    <i class="dropdown-icon fa fa-angle-left" aria-hidden="true"></i>
-                </div>
-                <div id="collapse-sidebar-menu" class="collapse">
-                    <a ng-repeat="category in ctrl.categories" ui-sref="dashboard.list-products({ id: category.id })" class="menu-btn sub-menu-btn">{{ category.name }}</a>
-                </div>
+    <!--sidebar-->
+    <div id="dashboard-sidebar">
+        <div id="dashboard-logo">
+            <div class="logo">
+                <img ng-src="./assets/images/logo.png">
+                <span >Octana</span>
             </div>
-            <div class="menu-btn">
-                <i class="fa fa-line-chart" aria-hidden="true"></i>
-                <span>Statistics</span>
+            <span class="version">v1.0</span>
+        </div>
+        <div id="dashboard-status">
+            <p>Last update 20/10/2017</p>
+        </div>
+        <div id="dashboard-menu" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal', scrollInertia: 250 }">
+            <div class="menu-section" ng-repeat="x in [1, 2, 3]">
+                <p class="section-title">Main</p>
+                <ul>
+                    <li><i class="fa fa-fw fa-clock-o"></i> Dashboard <span class="count">3</span></li>
+                    <li><i class="fa fa-fw fa-diamond"></i> General</li>
+                    <li><i class="fa fa-fw fa-heart-o"></i> Color</li>
+                </ul>
             </div>
         </div>
-    </div> <!--/sidebar -->
+    </div> <!--/end-sidebar-->
 
-    <div id="page">
-        <header>
+    <div id="dashboard-content-cover"></div>
+
+    <!--content-->
+    <div id="dashboard-content">
+        <div id="dashboard-header">
             <ul>
-                <li class="shop" ng-if="ctrl.shopInfo">
-                    <div class="logo">
-                        <img ng-src="{{ ctrl.shopInfo.logo }}">
-                    </div>
-                    <div class="details">
-                        <p class="name">{{ ctrl.shopInfo.name }}</p>
-                        <p class="slogn">{{ ctrl.shopInfo.slogan }}</p>
-                    </div>
-                    <div class="clear"></div>
+                <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
+                <li class="page-title">
+                    <p>Dashboard</p>
                 </li>
-                <li class="settings">
-                    <!--<a>
-                        <i class="fa fa-gear"></i>
-                    </a>
-                    <div class="clear"></div>-->
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="settings-menu" data-toggle="dropdown" aria-haspopup="true">
-                            <i class="fa fa-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#" ui-sref="dashboard.settings">Settings</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" ng-click="ctrl.logout()">Logout</a></li>
-                        </ul>
+                <li class="settings"><i class="fa fa-gear"></i></li>
+                <li class="shop-info">
+                    <img src="http://payload240.cargocollective.com/1/9/316853/7104954/American-Menswear-Logo5.png">
+                    <div class="details">
+                        <p class="name">Town team</p>
+                        <p class="slogan">Men's wear</p>
                     </div>
+                    <div class="clearfix"></div>
                 </li>
             </ul>
-        </header> <!--/header-->
+            <div class="clearfix"></div>
+        </div>
+        <div id="page-content" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }">
+            <div class="col-md-9">A</div>
+            <div class="col-md-3">B</div>
+        </div>
+    </div><!--/end-content-->
+</div>
 
-        <div class="content">
-            <ui-view></ui-view>
-        </div> <!--/content-->
-    </div> <!--/page-->
-</div> <!--/dashboard -->
+<script>
+    var breakPoint = 992;
+    $( ".sidebar-toggler, #dashboard-content-cover" ).click(function() {
+        if($( window ).width() <= breakPoint) {
+            $( "#dashboard" ).toggleClass( "sidebar-active" );
+        }
+    });
+    $( window ).resize(function() {
+        if($( window ).width() > breakPoint) {
+            $( "#dashboard" ).removeClass( "sidebar-active" );
+        }
+    });
+</script>

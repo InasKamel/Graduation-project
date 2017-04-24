@@ -12,7 +12,12 @@
         vm.shopInfo = undefined;
         vm.categories = [];
 
-        init();
+        vm.arr = [];
+        for(var i = 0; i < 100; i++) {
+            vm.arr.push(i);
+        }
+
+        // init();
 
         function init() {
             ShopService

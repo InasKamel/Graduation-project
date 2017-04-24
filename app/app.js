@@ -7,7 +7,7 @@
             'ui.router',
             'ngMessages',
             'color.picker',
-            'ui.slimscroll',
+            'ngScrollbars',
         ])
         .run(appRun);
 
