@@ -17,6 +17,9 @@
     $rootScope.$on('$stateChangeStart', onStateChange);
 
     function onStateChange(e, toState, toParams, fromState) {
+      $rootScope.loading = true;
+      $rootScope.showContent = false;
+
       var isProtected = toState.data && toState.data.protected;
       if(isProtected && !$auth.isAuthenticated()) {
         e.preventDefault();
