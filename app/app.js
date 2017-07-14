@@ -14,6 +14,7 @@
   appRun.$inject = ['$rootScope', '$auth', '$state', '$location'];
   function appRun($rootScope, $auth, $state, $location) {
     $rootScope.homepage = 'dashboard.template';
+    $rootScope.logout = logout;
     $rootScope.$on('$stateChangeStart', onStateChange);
 
     function onStateChange(e, toState, toParams, fromState) {
@@ -27,6 +28,13 @@
       } else if(toState.name === 'login' && $auth.isAuthenticated()) {
         e.preventDefault();
         $state.go($rootScope.homepage);
+      }
+    }
+
+    function logout() {
+      if(confirm('Are you sure you want to logout ?')) {
+        $auth.logout();
+        window.location = '/';
       }
     }
   }
