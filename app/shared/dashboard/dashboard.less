@@ -66,7 +66,7 @@ input {
         }
 
         #dashboard-logo {
-            height: @header-height;
+            height: @header-height-logo;
             background-color: @color1;
         }
 
@@ -77,8 +77,8 @@ input {
         }
 
         #dashboard-menu {
-            top: @header-height + @sidebar-status;
-            height: calc(~"100% - " (@header-height + @sidebar-status));
+            top: @header-height-logo + @sidebar-status;
+            height: calc(~"100% - " (@header-height-logo +  @sidebar-status));
             overflow-y: auto;
             box-sizing: border-box;
             background-color: @color2;
@@ -163,11 +163,11 @@ input {
     .logo{
         img {
             height: @logo-height;
-            margin: calc((@header-height - @logo-height)/2) 0;
+            margin: calc((@header-height-logo - @logo-height)/2) 0;
         }
         span {
             display: inline-block;
-            margin: calc((@header-height - @logo-height)/2) 5px;
+            margin: calc((@header-height-logo - @logo-height)/2) 5px;
             line-height: @logo-height;
             vertical-align: middle;
             font-size: 24px;
@@ -180,7 +180,7 @@ input {
         position: absolute;
         width: 40px;
         line-height: 25px;
-        top: calc(@header-height - 25px - 3px);
+        top: calc(@header-height-logo - 25px - 3px);
         left: calc(@sidebar-width - 40px - 3px);
         vertical-align: middle;
         font-size: 12px;
@@ -211,13 +211,13 @@ input {
         }
         ul {
             margin: 0;
-            padding: 0;
+            padding: 0
         }
         li {
             color: @color8;
             list-style: none;
             text-transform: uppercase;
-            padding: 8px 20px;
+            padding: 8px 20px 8px 30px;
             cursor: pointer;
             .transition(all @transition-speed);
 
@@ -255,6 +255,7 @@ input {
 }
 
 #dashboard-header {
+    border-bottom: 1px solid @color1;
     ul {
         padding: 0;
         margin: 0;
@@ -269,8 +270,9 @@ input {
             color: @color14;
             background-color: @color12;
             width: 0;
-            height: @header-height;
-            line-height: @header-height;
+            height: @header-btn-size;
+            line-height: @header-btn-size;
+            margin-top: (@header-height - @header-btn-size)/2;
             vertical-align: middle;
             text-align: center;
             overflow: hidden;
@@ -282,28 +284,29 @@ input {
             }
 
             @media screen and (max-width: @mob-screen-width) {
-                width: @header-height;
+                width: @header-btn-size;
             }
         }
 
         &.page-title {
             float: left;
-            color: #FFF;
+            color: #333;
             text-transform: uppercase;
             font-size: 22px;
             font-weight: 300;
-            margin: calc((@header-height - @logo-height)/2) 15px;
-            line-height: @logo-height;
+            margin: 0 15px;
+            line-height: @header-height;
             vertical-align: middle;
         }
 
-        &.settings {
+        &.header-btn {
             float: right;
             color: @color14;
             background-color: @color12;
-            width: @header-height;
-            height: @header-height;
-            line-height: @header-height;
+            width: @header-btn-size;
+            height: @header-btn-size;
+            line-height: @header-btn-size;
+            margin: (@header-height - @header-btn-size)/2 5px;
             vertical-align: middle;
             text-align: center;
             cursor: pointer;
@@ -324,14 +327,14 @@ input {
             margin-right: 10px;
             .transition(all @transition-speed);
 
-            &:hover {
-                background-color: (@color2 + 15);
-            }
+            // &:hover {
+            //     background-color: (@color2 + 15);
+            // }
 
             img {
                 float: left;
                 height: @header-height;
-                padding: 6px;
+                padding: 13px;
                 .border-radius(50%);
             }
 
@@ -350,12 +353,14 @@ input {
                     font-weight: 700;
                     height: @name-height;
                     line-height: @name-height;
+                    color: #333;
                 }
 
                 .slogan {
                     height: @slogan-height;
                     line-height: @slogan-height;
                     margin-top: @slogan-margin;
+                    color: #999;
                 }
             }
         }

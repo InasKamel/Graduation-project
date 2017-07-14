@@ -4,20 +4,20 @@
         <div id="dashboard-logo">
             <div class="logo">
                 <img ng-src="./assets/images/logo.png">
-                <span >Octana</span>
+                <!--<span >Octana</span>-->
             </div>
             <span class="version">beta</span>
         </div>
-        <div id="dashboard-status">
+        <!--<div id="dashboard-status">
             <p>Last update 20/10/2017</p>
-        </div>
+        </div>-->
         <div id="dashboard-menu" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal', scrollInertia: 250 }">
             <div class="menu-section">
                 <p class="section-title">Dashboard</p>
                 <ul>
                     <li><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
                     <li><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
-                    <li><i class="fa fa-fw fa-comments-o"></i> Comments</li>
+                    <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
                 </ul>
             </div>
             <div class="menu-section">
@@ -41,7 +41,8 @@
                 <li class="page-title">
                     <p>Dashboard</p>
                 </li>
-                <li class="settings"><i class="fa fa-gear"></i></li>
+                <li class="header-btn"><i class="fa fa-sign-out"></i></li>
+                <li class="header-btn"><i class="fa fa-gear"></i></li>
                 <li class="shop-info">
                     <img ng-src="{{ ctrl.shopInfo.logo }}">
                     <div class="details">
