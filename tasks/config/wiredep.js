@@ -11,11 +11,11 @@
  */
 
 module.exports = function(grunt) {
-    grunt.config.set('wiredep', {
-        app: {
-            src: '.tmp/index.html'
-        }
-    });
+  grunt.config.set('wiredep', {
+    app: {
+      src: '.tmp/index.html'
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-wiredep');
 };

@@ -1,74 +1,74 @@
 <div id="dashboard">
-    <!--sidebar-->
-    <div id="dashboard-sidebar">
-        <div id="dashboard-logo">
-            <div class="logo">
-                <img ng-src="./assets/images/logo.png">
-                <!--<span >Octana</span>-->
-            </div>
-            <span class="version">beta</span>
-        </div>
-        <!--<div id="dashboard-status">
-            <p>Last update 20/10/2017</p>
-        </div>-->
-        <div id="dashboard-menu" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal', scrollInertia: 250 }">
-            <div class="menu-section">
-                <p class="section-title">Dashboard</p>
-                <ul>
-                    <li ui-sref-active="active"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
-                    <li ui-sref-active="active"><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
-                    <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
-                </ul>
-            </div>
-            <div class="menu-section">
-                <p class="section-title">Categories</p>
-                <ul>
-                    <li ng-repeat="category in ctrl.categories" ui-sref-active="active" ui-sref="dashboard.list-products({ id: category.id })">
-                        <i class="fa fa-fw fa-list-alt"></i> {{ category.name }}
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> <!--/end-sidebar-->
+  <!--sidebar-->
+  <div id="dashboard-sidebar">
+    <div id="dashboard-logo">
+      <div class="logo">
+        <img ng-src="./assets/images/logo.png">
+        <!--<span >Octana</span>-->
+      </div>
+      <span class="version">beta</span>
+    </div>
+    <!--<div id="dashboard-status">
+      <p>Last update 20/10/2017</p>
+    </div>-->
+    <div id="dashboard-menu" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal', scrollInertia: 250 }">
+      <div class="menu-section">
+        <p class="section-title">Dashboard</p>
+        <ul>
+          <li ui-sref-active="active"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
+          <li ui-sref-active="active"><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
+          <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
+        </ul>
+      </div>
+      <div class="menu-section">
+        <p class="section-title">Categories</p>
+        <ul>
+          <li ng-repeat="category in ctrl.categories" ui-sref-active="active" ui-sref="dashboard.list-products({ id: category.id })">
+            <i class="fa fa-fw fa-list-alt"></i> {{ category.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> <!--/end-sidebar-->
 
-    <div id="dashboard-content-cover"></div>
+  <div id="dashboard-content-cover"></div>
 
-    <!--content-->
-    <div id="dashboard-content">
-        <div id="dashboard-header">
-            <ul>
-                <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
-                <li class="page-title">Dashboard</li>
-                <li class="header-btn"><i class="fa fa-sign-out"></i></li>
-                <li class="header-btn"><i class="fa fa-gear"></i></li>
-                <li class="shop-info">
-                    <img ng-src="{{ ctrl.shopInfo.logo }}">
-                    <div class="details">
-                        <p class="name">{{ ctrl.shopInfo.name }}</p>
-                        <p class="slogan">{{ ctrl.shopInfo.slogan }}</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div id="page-content">
-            <!--ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }"-->
-            <ui-view></ui-view>
-        </div>
-    </div><!--/end-content-->
+  <!--content-->
+  <div id="dashboard-content">
+    <div id="dashboard-header">
+      <ul>
+        <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
+        <li class="page-title">Dashboard</li>
+        <li class="header-btn"><i class="fa fa-sign-out"></i></li>
+        <li class="header-btn"><i class="fa fa-gear"></i></li>
+        <li class="shop-info">
+          <img ng-src="{{ ctrl.shopInfo.logo }}">
+          <div class="details">
+            <p class="name">{{ ctrl.shopInfo.name }}</p>
+            <p class="slogan">{{ ctrl.shopInfo.slogan }}</p>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div id="page-content">
+      <!--ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }"-->
+      <ui-view></ui-view>
+    </div>
+  </div><!--/end-content-->
 </div>
 
 <script>
-    var breakPoint = 992;
-    $( ".sidebar-toggler, #dashboard-content-cover, .menu-section > ul" ).click(function() {
-        if($( window ).width() <= breakPoint) {
-            $( "#dashboard" ).toggleClass( "sidebar-active" );
-        }
-    });
-    $( window ).resize(function() {
-        if($( window ).width() > breakPoint) {
-            $( "#dashboard" ).removeClass( "sidebar-active" );
-        }
-    });
+  var breakPoint = 992;
+  $( ".sidebar-toggler, #dashboard-content-cover, .menu-section > ul" ).click(function() {
+    if($( window ).width() <= breakPoint) {
+      $( "#dashboard" ).toggleClass( "sidebar-active" );
+    }
+  });
+  $( window ).resize(function() {
+    if($( window ).width() > breakPoint) {
+      $( "#dashboard" ).removeClass( "sidebar-active" );
+    }
+  });
 </script>

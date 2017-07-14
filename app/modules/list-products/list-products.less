@@ -2,60 +2,60 @@
 @import "../../shared/dashboard/mixins";
 
 #list-products-module .product {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border: 1px solid #DEDEDE;
+  margin: 10px 0;
+  cursor: pointer;
+
+  .image {
+    height: 100%;
+    text-align: center;
+    img {
+      height: 100%;
+    }
+  }
+
+  .details {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 180px;
-    border: 1px solid #DEDEDE;
-    margin: 10px 0;
-    cursor: pointer;
+    height: 100%;
+    padding: 35px 15px;
+    background: rgba(220, 220, 220, 0.7);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    .transition(@transition-speed);
 
-    .image {
-        height: 100%;
-        text-align: center;
-        img {
-            height: 100%;
-        }
+    .meta {
+      margin: 10px 0;
+      p {
+        margin: 3px 0;
+        font-size: 16px;
+      }
     }
 
-    .details {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 35px 15px;
-        background: rgba(220, 220, 220, 0.7);
-        text-align: center;
-        visibility: hidden;
-        opacity: 0;
-        .transition(@transition-speed);
-
-        .meta {
-            margin: 10px 0;
-            p {
-                margin: 3px 0;
-                font-size: 16px;
-            }
-        }
-
-        .views {
-            color: #333;
-        }
-
-        .likes {
-            color: #DD0000;
-        }
+    .views {
+      color: #333;
     }
 
-    &:hover .details {
-        visibility: visible;
-        opacity: 1;
+    .likes {
+      color: #DD0000;
     }
+  }
+
+  &:hover .details {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 #list-products-module .products-controls {
-    padding: 15px 10px 10px 10px;
-    button {
-        .transition(@transition-speed);
-    }
+  padding: 15px 10px 10px 10px;
+  button {
+    .transition(@transition-speed);
+  }
 }

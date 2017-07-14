@@ -11,36 +11,36 @@
  */
 
 module.exports = function(grunt) {
-    grunt.config.set('copy', {
-        index: {
-            src: './app/index.html',
-            dest: '.tmp/index.html'
-        },
-        html: {
-            files: [{
-                expand: true,
-                cwd: './app',
-                src: ['**/!(index).html'],
-                dest: '.tmp'
-            }]
-        },
-        js: {
-            files: [{
-                expand: true,
-                cwd: './app',
-                src: ['**/*.js'],
-                dest: '.tmp'
-            }]
-        },
-        assets: {
-            files: [{
-                expand: true,
-                cwd: './app/assets',
-                src: ['**/*.*'],
-                dest: '.tmp/assets'
-            }]
-        }
-    });
+  grunt.config.set('copy', {
+    index: {
+      src: './app/index.html',
+      dest: '.tmp/index.html'
+    },
+    html: {
+      files: [{
+        expand: true,
+        cwd: './app',
+        src: ['**/!(index).html'],
+        dest: '.tmp'
+      }]
+    },
+    js: {
+      files: [{
+        expand: true,
+        cwd: './app',
+        src: ['**/*.js'],
+        dest: '.tmp'
+      }]
+    },
+    assets: {
+      files: [{
+        expand: true,
+        cwd: './app/assets',
+        src: ['**/*.*'],
+        dest: '.tmp/assets'
+      }]
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 };

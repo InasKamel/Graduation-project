@@ -9,14 +9,14 @@
  */
 
 module.exports = function(grunt) {
-    grunt.registerTask('serve', [
-        'clean',
-        'jshint',
-        'less',
-        'copy',
-        'wiredep',
-        'injector',
-        'connect',
-        'watch'
-    ]);
+  grunt.registerTask('serve', [
+    'clean',
+    'jshint',
+    'less',
+    'copy',
+    'wiredep',
+    'injector',
+    'connect',
+    'watch'
+  ]);
 };
