@@ -11,31 +11,19 @@
       get: get,
     };
 
-    var baseURL = 'https://octana.herokuapp.com/api/v1/web';
+    var baseURL = 'http://localhost:3000/api/v1/web';
     var endpoints = {
       getTemplates: function() {
-        return {
-          method: 'GET',
-          url: 'https://octana.herokuapp.com/api/v1/templates',
-        };
+        return { method: 'GET', url: 'http://localhost:3000/api/v1/templates' };
       },
       login: function() {
-        return {
-          method: 'GET',
-          url: baseURL + '/login',
-        };
+        return { method: 'GET', url: baseURL + '/login' };
       },
       getShopInfo: function() {
-        return {
-          method: 'GET',
-          url: baseURL + '/shop-info',
-        };
+        return { method: 'GET', url: baseURL + '/shop-info' };
       },
       updateShopInfo: function() {
-        return {
-          method: 'PATCH',
-          url: baseURL + '/shop-info',
-        };
+        return { method: 'PATCH', url: baseURL + '/shop-info' };
       },
       getProducts: function(categoryId, limit, page) {
         var query = '';
@@ -57,58 +45,31 @@
         };
       },
       getProduct: function(productId) {
-        return {
-          method: 'GET',
-          url: baseURL + '/products/' + productId,
-        };
+        return { method: 'GET', url: baseURL + '/products/' + productId };
       },
       createProduct: function() {
-        return {
-          method: 'POST',
-          url: baseURL + '/products',
-        };
+        return { method: 'POST', url: baseURL + '/products' };
       },
       updateProduct: function(productId) {
-        return {
-          method: 'PATCH',
-          url: baseURL + '/products/' + productId,
-        };
+        return { method: 'PATCH', url: baseURL + '/products/' + productId };
       },
       removeProduct: function(productId) {
-        return {
-          method: 'DELETE',
-          url: baseURL + '/products/' + productId,
-        };
+        return { method: 'DELETE', url: baseURL + '/products/' + productId };
       },
       addProductImages: function(productId) {
-        return {
-          method: 'POST',
-          url: baseURL + '/products/' + productId + '/images',
-        };
+        return { method: 'POST', url: baseURL + '/products/' + productId + '/images' };
       },
       removeProductImage: function(productId, imageId) {
-        return {
-          method: 'DELETE',
-          url: baseURL + '/products/' + productId + '/images/' + imageId,
-        };
+        return { method: 'DELETE', url: baseURL + '/products/' + productId + '/images/' + imageId };
       },
       addProductColor: function(productId) {
-        return {
-          method: 'POST',
-          url: baseURL + '/products/' + productId + '/colors',
-        };
+        return { method: 'POST', url: baseURL + '/products/' + productId + '/colors' };
       },
       removeProductColor: function(productId, colorId) {
-        return {
-          method: 'DELETE',
-          url: baseURL + '/products/' + productId + '/colors/' + colorId,
-        };
+        return { method: 'DELETE', url: baseURL + '/products/' + productId + '/colors/' + colorId };
       },
       updateProductSizes: function(productId) {
-        return {
-          method: 'PATCH',
-          url: baseURL + '/products/' + productId + '/sizes',
-        };
+        return { method: 'PATCH', url: baseURL + '/products/' + productId + '/sizes' };
       },
     };
 

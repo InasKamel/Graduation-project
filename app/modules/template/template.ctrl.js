@@ -5,11 +5,12 @@
     .module('dashboard')
     .controller('TemplateController', TemplateController);
 
-  TemplateController.$inject = ['TemplateService'];
-  function TemplateController(TemplateService) {
+  TemplateController.$inject = ['$rootScope', 'TemplateService'];
+  function TemplateController($rootScope, TemplateService) {
     var vm = this;
     vm.sayHello = sayHello;
     vm.testService = testService;
+    $rootScope.loading = false;
 
     testService();
 

@@ -24,6 +24,7 @@ module.exports = function(grunt) {
             '.tmp/app.js',
             '.tmp/*.js',
             '.tmp/services/**/*.js',
+            '.tmp/directives/**/*.js',
             '.tmp/shared/**/*.js',
             '.tmp/modules/**/*.js',
           ],

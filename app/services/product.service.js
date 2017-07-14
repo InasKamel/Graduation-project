@@ -12,6 +12,7 @@
       getProduct: getProduct,
       createProduct: createProduct,
       updateProduct: updateProduct,
+      addImage: addImage,
       addColor: addColor,
       removeColor: removeColor,
       updateSizes: updateSizes,
@@ -59,6 +60,18 @@
         data: {},
       };
       req.data[attribute] = newValue;
+      return $http(req);
+    }
+
+    function addImage(productId, payload) {
+      var endpoint = EndpointService.get('addProductImages', productId);
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: { 'Content-Type': undefined },
+        transformRequest: angular.identity,
+        data: payload
+      };
       return $http(req);
     }
 

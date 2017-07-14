@@ -5,11 +5,10 @@
     .module('dashboard')
     .controller('AddProductController', AddProductController);
 
-  AddProductController.$inject = ['$state', 'ProductService'];
-  function AddProductController($state, ProductService) {
+  AddProductController.$inject = ['$rootScope', '$state', '$timeout', '$q', 'ProductService'];
+  function AddProductController($rootScope, $state, $timeout, $q, ProductService) {
     var vm = this;
     vm.categoryId = undefined;
-    vm.isLoading = false;
 
     vm.product = {
       name: '',
@@ -42,6 +41,10 @@
 
     function init() {
       vm.categoryId = $state.params.id;
+      $timeout(function () {
+        $rootScope.showContent = true;
+        $rootScope.loading = false;
+      }, 500);
     }
 
     function addColor() {
@@ -66,15 +69,27 @@
     }
 
     function addProduct() {
-      vm.isLoading = true;
+      $rootScope.loading = true;
       ProductService
-        .createProduct(vm.categoryId, vm.product)
-        .then(function(res) {
-          $state.go('dashboard.list-products', { id: vm.categoryId });
-        })
-        .catch(function(err) {
-          // @TODO: handle the error
-        });
+      .createProduct(vm.categoryId, vm.product)
+      .then(function(res) {
+        console.log(res.data.id);
+        var payload = new FormData();
+        if(vm.product.images) {
+          Object.keys(vm.product.images).forEach(function(k) {
+            var file = vm.product.images[k];
+            payload.append('images', file);
+          });
+          return ProductService.addImage(res.data.id, payload);
+        }
+        return $q.resolve();
+      })
+      .then(function () {
+        $state.go('dashboard.list-products', { id: vm.categoryId });
+      })
+      .catch(function(err) {
+        // @TODO: handle the error
+      });
     }
   }
 })();
