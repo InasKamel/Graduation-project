@@ -73,7 +73,6 @@
       ProductService
       .createProduct(vm.categoryId, vm.product)
       .then(function(res) {
-        console.log(res.data.id);
         var payload = new FormData();
         if(vm.product.images) {
           Object.keys(vm.product.images).forEach(function(k) {

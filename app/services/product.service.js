@@ -13,6 +13,7 @@
       createProduct: createProduct,
       updateProduct: updateProduct,
       addImage: addImage,
+      removeImage: removeImage,
       addColor: addColor,
       removeColor: removeColor,
       updateSizes: updateSizes,
@@ -71,6 +72,17 @@
         headers: { 'Content-Type': undefined },
         transformRequest: angular.identity,
         data: payload
+      };
+      return $http(req);
+    }
+
+    function removeImage(productId, imageId) {
+      var endpoint = EndpointService.get('removeProductImage', productId, imageId);
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+        data: {},
       };
       return $http(req);
     }

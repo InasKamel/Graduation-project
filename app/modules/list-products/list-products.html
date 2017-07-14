@@ -13,7 +13,8 @@
       <div ui-sref="dashboard.product({ id: product.id })">
         <div class="product">
           <div class="image">
-            <img ng-src="{{ product.images[0].thumb }}">
+            <img ng-if="product.images.length" ng-src="{{ product.images[0].thumb }}">
+            <img ng-if="!product.images.length" ng-src="./assets/images/product-placeholder.png">
           </div>
           <div class="details">
             <div class="meta">

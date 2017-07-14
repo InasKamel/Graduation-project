@@ -1,20 +1,55 @@
-<div id="product-module">
-  <div class="back-btn" ui-sref="dashboard.list-products({ id: ctrl.product.category.id })">
+<div id="product-module" ng-show="showContent">
+  <!--<div class="back-btn" ui-sref="dashboard.list-products({ id: ctrl.product.category.id })">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
-  </div>
-  <div class="row" ng-if="ctrl.product">
-    <div class="product-image col-sm-7">
-      <div class="product-display">
-        <img ng-src="{{ ctrl.product.images[0].src }}">
+  </div>-->
+  <div class="row" style="margin: 0; height: 100%;">
+    <div class="product-image col-sm-6">
+      <div class="row">
+        <div class="col-xs-4 col-sm-3" ng-if="ctrl.product.images.length">
+          <div class="image-selector">
+            <p><i class="fa fa-camera"></i> Photos</p>
+            <img
+              ng-repeat="img in ctrl.product.images"
+              ng-src="{{ img.src }}"
+              ng-click="ctrl.currentImage = $index;"
+              ng-class="{ 'selected': ctrl.currentImage === $index }">
+          </div>
+        </div>
+        <div
+          ng-class="{
+            'col-xs-8': ctrl.product.images.length,
+            'col-sm-9': ctrl.product.images.length,
+            'col-xs-12': !ctrl.product.images.length
+          }">
+          <div class="product-display">
+            <img ng-if="ctrl.product.images.length" ng-src="{{ ctrl.product.images[ctrl.currentImage].src }}">
+            <img ng-if="!ctrl.product.images.length" ng-src="./assets/images/product-placeholder.png">
+            <div class="details" ng-if="ctrl.product.images.length">
+              <button class="ui button" ng-click="ctrl.removeImage(ctrl.product.images[ctrl.currentImage].id);">
+                <i class="fa fa-trash"></i> Remove image
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="new-photos" class="row">
+        <div class="col-xs-8">
+          <input class="file-input" type="file" accept="image/*" files-model="ctrl.newImages" multiple>
+        </div>
+        <div class="col-xs-4" style="text-align: right;">
+          <button type="button" class="ui button" ng-click="ctrl.addImages();"><i class="fa fa-plus"></i> Add photos</button>
+        </div>
       </div>
     </div>
-    <div class="product-details col-sm-5" slimscroll="{ height: 'auto' }">
+
+    <div class="product-details col-sm-5">
       <div class="details">
         <!--product-name-->
         <div class="product-name">
           <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-name'">
             <p>{{ ctrl.product.name }}</p>
-            <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="name.newValue = ctrl.product.name; ctrl.feildInEdit = 'product-name'">
+            <div class="edit-btn" ng-hide="loading" ng-click="name.newValue = ctrl.product.name; ctrl.feildInEdit = 'product-name'">
               <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
             </div>
           </div>
@@ -27,18 +62,18 @@
                 <p ng-message="required">Name is required</p>
               </div>
               <div class="btns">
-                <div class="spinner" ng-show="ctrl.isLoading">
+                <div class="spinner" ng-show="loading">
                   <div class="bounce1"></div>
                   <div class="bounce2"></div>
                   <div class="bounce3"></div>
                 </div>
                 <button
                   type="submit"
-                  ng-disabled="ctrl.isLoading || productNameForm.name.$invalid"
+                  ng-disabled="loading || productNameForm.name.$invalid"
                   ng-click="ctrl.updateProduct('name', name.newValue);"
                   class="save-btn"><i class="fa fa-save"></i>Save changes</button>
                 <button
-                  ng-disabled="ctrl.isLoading"
+                  ng-disabled="loading"
                   ng-click="ctrl.feildInEdit = undefined"
                   class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
               </div>
@@ -51,7 +86,7 @@
           <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-desc'">
             <p>{{ ctrl.product.desc }}</p>
             <p ng-show="ctrl.product.desc === ''">There is no description</p>
-            <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="desc.newValue = ctrl.product.desc; ctrl.feildInEdit = 'product-desc'">
+            <div class="edit-btn" ng-hide="loading" ng-click="desc.newValue = ctrl.product.desc; ctrl.feildInEdit = 'product-desc'">
               <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
             </div>
           </div>
@@ -63,18 +98,18 @@
               <div class="messages" ng-messages="productDescForm.desc.$error">
               </div>
               <div class="btns">
-                <div class="spinner" ng-show="ctrl.isLoading">
+                <div class="spinner" ng-show="loading">
                   <div class="bounce1"></div>
                   <div class="bounce2"></div>
                   <div class="bounce3"></div>
                 </div>
                 <button
                   type="submit"
-                  ng-disabled="ctrl.isLoading || productDescForm.desc.$invalid"
+                  ng-disabled="loading || productDescForm.desc.$invalid"
                   ng-click="ctrl.updateProduct('desc', desc.newValue);"
                   class="save-btn"><i class="fa fa-save"></i>Save changes</button>
                 <button
-                  ng-disabled="ctrl.isLoading"
+                  ng-disabled="loading"
                   ng-click="ctrl.feildInEdit = undefined"
                   class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
               </div>
@@ -93,31 +128,32 @@
           <p><i class="fa fa-money"></i>Price</p>
           <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-price'">
             <p><span>{{ ctrl.product.price | number:2 }} L.E</span></p>
-            <div class="edit-btn" ng-hide="ctrl.isLoading" ng-click="price.newValue = ctrl.product.price; ctrl.feildInEdit = 'product-price'">
+            <div class="edit-btn" ng-hide="loading" ng-click="price.newValue = ctrl.product.price; ctrl.feildInEdit = 'product-price'">
               <p><span>Edit</span> <i class="fa fa-pencil-square-o"></i></p>
             </div>
           </div>
 
           <div class="field-editing" ng-show="ctrl.feildInEdit === 'product-price'">
             <form name="productPriceForm">
-              <input type="number" step="0.01" name="price" ng-model="price.newValue" autofocus required>
+              <input type="number" step="0.01" min="0.0" name="price" ng-model="price.newValue" autofocus required>
               <div class="messages" ng-messages="productPriceForm.price.$error">
                 <p ng-message="required">Price is required</p>
                 <p ng-message="number">Price should be a number</p>
+                <p ng-message="min">Price should be a positive number</p>
               </div>
               <div class="btns">
-                <div class="spinner" ng-show="ctrl.isLoading">
+                <div class="spinner" ng-show="loading">
                   <div class="bounce1"></div>
                   <div class="bounce2"></div>
                   <div class="bounce3"></div>
                 </div>
                 <button
                   type="submit"
-                  ng-disabled="ctrl.isLoading || productPriceForm.price.$invalid"
+                  ng-disabled="loading || productPriceForm.price.$invalid"
                   ng-click="ctrl.updateProduct('price', price.newValue);"
                   class="save-btn"><i class="fa fa-save"></i>Save changes</button>
                 <button
-                  ng-disabled="ctrl.isLoading"
+                  ng-disabled="loading"
                   ng-click="ctrl.feildInEdit = undefined"
                   class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
               </div>
@@ -133,7 +169,7 @@
               class="color"
               ng-repeat="color in ctrl.product.dynamicFields.colors track by $index"
               ng-style="{ 'background-color': color.value }"
-              ng-class="{ 'disabled': ctrl.isLoading }"
+              ng-class="{ 'disabled': loading }"
               ng-click="ctrl.removeColor(color.id)">
                 <div class="delete">
                   <i class="fa fa-trash"></i>
@@ -152,17 +188,17 @@
               options="ctrl.colorPickerOptions">
             </color-picker>
             <div class="btns">
-              <div class="spinner" ng-show="ctrl.isLoading">
+              <div class="spinner" ng-show="loading">
                 <div class="bounce1"></div>
                 <div class="bounce2"></div>
                 <div class="bounce3"></div>
               </div>
               <button
-                ng-disabled="ctrl.isLoading"
+                ng-disabled="loading"
                 ng-click="ctrl.addColor()"
                 class="save-btn"><i class="fa fa-plus"></i>Add</button>
               <button
-                ng-disabled="ctrl.isLoading"
+                ng-disabled="loading"
                 ng-click="ctrl.feildInEdit = undefined"
                 class="cancel-btn"><i class="fa fa-times"></i>Cancel</button>
             </div>
@@ -175,7 +211,7 @@
           <div class="btns">
             <button
               class="size-btn"
-              ng-disabled="ctrl.isLoading"
+              ng-disabled="loading"
               ng-repeat="(size, value) in ctrl.product.dynamicFields.sizes"
               ng-class="{ 'selected': value }"
               ng-click="ctrl.changeSize(size)">{{ size }}</button>
