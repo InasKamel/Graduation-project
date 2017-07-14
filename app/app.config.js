@@ -14,7 +14,8 @@
     $authProvider.tokenHeader = 'X-Access-Token';
     $authProvider.tokenPrefix = '';
     $authProvider.tokenType = '';
-    $urlRouterProvider.when('', '/template');    // Home page
+    $urlRouterProvider.when('', '/statistics');    // Home page
+    $urlRouterProvider.otherwise('/statistics');    // Home page
 
     $httpProvider.interceptors.push('httpInterceptor');
   }

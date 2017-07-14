@@ -7,7 +7,7 @@
   <div id="dashboard-sidebar">
     <div id="dashboard-logo">
       <div class="logo">
-        <img ng-src="./assets/images/logo.png">
+        <img ng-src="./assets/images/logo.png" ui-sref="{{ homepage }}" style="cursor: pointer;">
         <!--<span >Octana</span>-->
       </div>
       <span class="version">beta</span>
@@ -19,7 +19,7 @@
       <div class="menu-section">
         <p class="section-title">Dashboard</p>
         <ul>
-          <li ui-sref-active="active"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
+          <li ui-sref-active="active" ui-sref="dashboard.statistics"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
           <li ui-sref-active="active"><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
           <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
         </ul>

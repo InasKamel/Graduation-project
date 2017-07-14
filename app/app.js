@@ -13,7 +13,7 @@
 
   appRun.$inject = ['$rootScope', '$auth', '$state', '$location'];
   function appRun($rootScope, $auth, $state, $location) {
-    $rootScope.homepage = 'dashboard.template';
+    $rootScope.homepage = 'dashboard.statistics';
     $rootScope.logout = logout;
     $rootScope.$on('$stateChangeStart', onStateChange);
 
