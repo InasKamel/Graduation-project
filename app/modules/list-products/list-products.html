@@ -1,24 +1,30 @@
 <div id="list-products-module">
     <!--product-controls-->
     <div class="products-controls">
-        <a class="btn add-btn" ui-sref="dashboard.add-product({ id: ctrl.categoryId })">
-            <p><i class="fa fa-plus"></i> Add new product</p>
-        </a>
-    </div><!--/product-controls-->
+        <button class="ui basic button" ui-sref="dashboard.add-product({ id: ctrl.categoryId })">
+            <i class="plus icon"> </i>Add new product
+        </button>
+    </div>
+    <!--/product-controls-->
 
     <!--list-of-products-->
-    <div ng-repeat="product in ctrl.products" ui-sref="dashboard.product({ id: product.id })">
-        <div class="product">
-            <div class="image">
-                <img ng-src="{{ product.images[0].thumb }}">
-            </div>
-            <div class="details">
-                <div class="meta">
-                    <p class="views"><i class="fa fa-eye"></i> {{ product.meta.views }}</p>
-                    <p class="likes"><i class="fa fa-heart"></i> {{ product.meta.likes }}</p>
+    <div class="row" style="margin: 0;">
+        <div class="col-xs-12 col-sm-3 col-md-3" ng-repeat="product in ctrl.products">
+            <div ui-sref="dashboard.product({ id: product.id })">
+                <div class="product">
+                    <div class="image">
+                        <img ng-src="{{ product.images[0].thumb }}">
+                    </div>
+                    <div class="details">
+                        <div class="meta">
+                            <p class="views"><i class="fa fa-eye"></i> {{ product.meta.views }}</p>
+                            <p class="likes"><i class="fa fa-heart"></i> {{ product.meta.likes }}</p>
+                        </div>
+                        <p>{{ product.name }}</p>
+                    </div>
                 </div>
-                <p>{{ product.name }}</p>
             </div>
         </div>
-    </div><!--list-of-products-->
+    </div>
+    <!--/list-of-products-->
 </div>

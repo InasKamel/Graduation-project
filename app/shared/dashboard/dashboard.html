@@ -15,15 +15,15 @@
             <div class="menu-section">
                 <p class="section-title">Dashboard</p>
                 <ul>
-                    <li><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
-                    <li><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
+                    <li ui-sref-active="active"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
+                    <li ui-sref-active="active"><i class="fa fa-fw fa-diamond"></i> Orders <span class="count">3</span></li>
                     <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
                 </ul>
             </div>
             <div class="menu-section">
                 <p class="section-title">Categories</p>
                 <ul>
-                    <li ng-repeat="category in ctrl.categories" ui-sref="dashboard.list-products({ id: category.id })">
+                    <li ng-repeat="category in ctrl.categories" ui-sref-active="active" ui-sref="dashboard.list-products({ id: category.id })">
                         <i class="fa fa-fw fa-list-alt"></i> {{ category.name }}
                     </li>
                 </ul>
@@ -38,9 +38,7 @@
         <div id="dashboard-header">
             <ul>
                 <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
-                <li class="page-title">
-                    <p>Dashboard</p>
-                </li>
+                <li class="page-title">Dashboard</li>
                 <li class="header-btn"><i class="fa fa-sign-out"></i></li>
                 <li class="header-btn"><i class="fa fa-gear"></i></li>
                 <li class="shop-info">
@@ -54,7 +52,8 @@
             </ul>
             <div class="clearfix"></div>
         </div>
-        <div id="page-content" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }">
+        <div id="page-content">
+            <!--ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }"-->
             <ui-view></ui-view>
         </div>
     </div><!--/end-content-->

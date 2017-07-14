@@ -219,9 +219,16 @@ input {
             text-transform: uppercase;
             padding: 8px 20px 8px 30px;
             cursor: pointer;
+            margin-bottom: 2px;
             .transition(all @transition-speed);
 
             &:hover {
+                font-weight: 600;
+                color: @color10;
+                background-color: @color11;
+            }
+
+            &.active {
                 font-weight: 600;
                 color: @color10;
                 background-color: @color11;
