@@ -8,6 +8,7 @@
   ListProductsController.$inject = ['$rootScope', '$state', '$timeout', 'ProductService'];
   function ListProductsController($rootScope, $state, $timeout, ProductService) {
     var vm = this;
+    $rootScope.pageTitle = 'Products';
     vm.categoryId = undefined;
     vm.products = [];
 

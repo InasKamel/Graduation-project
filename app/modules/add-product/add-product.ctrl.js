@@ -8,6 +8,7 @@
   AddProductController.$inject = ['$rootScope', '$state', '$timeout', '$q', 'ProductService'];
   function AddProductController($rootScope, $state, $timeout, $q, ProductService) {
     var vm = this;
+    $rootScope.pageTitle = 'Add new product';
     vm.categoryId = undefined;
 
     vm.product = {

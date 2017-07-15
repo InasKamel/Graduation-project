@@ -43,7 +43,7 @@
     <div id="dashboard-header">
       <ul>
         <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
-        <li class="page-title">Dashboard</li>
+        <li class="page-title">{{ ((pageTitle) ? pageTitle : 'Dashboard') }}</li>
         <li class="header-btn" ng-click="logout();"><i class="fa fa-sign-out"></i></li>
         <li class="header-btn" ui-sref="dashboard.settings"><i class="fa fa-gear"></i></li>
         <li class="shop-info">

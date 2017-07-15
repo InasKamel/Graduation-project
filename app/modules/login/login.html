@@ -13,7 +13,7 @@
         </div>
         <p class="form-message" ng-if="ctrl.message.length"><i class="fa fa-exclamation-triangle"></i> {{ ctrl.message }}</p>
         <div class="login-button">
-          <button ng-click="ctrl.login()" ng-class="{ 'disabled': ctrl.loading }">
+          <button class="ui button" ng-click="ctrl.login()" ng-class="{ 'disabled': ctrl.loading }">
             <span><i class="fa fa-sign-in" aria-hidden="true"></i> Login</span>
           </button>
         </div>

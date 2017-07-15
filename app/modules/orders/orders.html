@@ -14,6 +14,9 @@
       </tr>
     </thead>
     <tbody>
+      <tr ng-if="!ctrl.orders.length">
+        <td colspan="9">No orders</td>
+      </tr>
       <tr ng-repeat="order in ctrl.orders">
         <td>{{ order.id }}</td>
         <td>{{ order.createdAt }}</td>

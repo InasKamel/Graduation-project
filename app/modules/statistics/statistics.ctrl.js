@@ -8,6 +8,7 @@
   StatisticsController.$inject = ['$rootScope', '$timeout', 'ShopService'];
   function StatisticsController($rootScope, $timeout, ShopService) {
     var vm = this;
+    $rootScope.pageTitle = 'Statistics';
     vm.statisticsTab = 'views';
     vm.statistics = {};
     init();

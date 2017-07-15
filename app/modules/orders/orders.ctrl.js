@@ -8,6 +8,7 @@
   OrdersController.$inject = ['$rootScope', '$state', '$timeout', 'ShopService'];
   function OrdersController($rootScope, $state, $timeout, ShopService) {
     var vm = this;
+    $rootScope.pageTitle = 'Orders';
     vm.orders = [];
     vm.acceptOrder = acceptOrder;
     vm.rejectOrder = rejectOrder;

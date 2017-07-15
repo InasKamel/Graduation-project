@@ -8,6 +8,7 @@
   SettingsController.$inject = ['$rootScope', '$timeout', 'ShopService'];
   function SettingsController($rootScope, $timeout, ShopService) {
     var vm = this;
+    $rootScope.pageTitle = 'Settings';
     vm.shop = undefined;
     vm.feildInEdit = undefined;
 
