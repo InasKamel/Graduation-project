@@ -77,6 +77,15 @@
       updateProductSizes: function(productId) {
         return { method: 'PATCH', url: baseURL + '/products/' + productId + '/sizes' };
       },
+      getOrders: function() {
+        return { method: 'GET', url: baseURL + '/orders' };
+      },
+      acceptOrder: function(orderId) {
+        return { method: 'POST', url: baseURL + '/orders/' + orderId + '/accept' };
+      },
+      rejectOrder: function(orderId) {
+        return { method: 'POST', url: baseURL + '/orders/' + orderId + '/reject' };
+      }
     };
 
     function get(name) {

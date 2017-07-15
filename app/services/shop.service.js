@@ -10,7 +10,10 @@
     var methods = {
       getShopInfo: getShopInfo,
       updateShopInfo: updateShopInfo,
-      getGeneralStatistics: getGeneralStatistics
+      getGeneralStatistics: getGeneralStatistics,
+      getOrders: getOrders,
+      acceptOrder: acceptOrder,
+      rejectOrder: rejectOrder
     };
     return methods;
 
@@ -38,6 +41,36 @@
 
     function getGeneralStatistics() {
       var endpoint = EndpointService.get('getGeneralStatistics');
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+      };
+      return $http(req);
+    }
+
+    function getOrders() {
+      var endpoint = EndpointService.get('getOrders');
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+      };
+      return $http(req);
+    }
+
+    function acceptOrder(orderId) {
+      var endpoint = EndpointService.get('acceptOrder', orderId);
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+      };
+      return $http(req);
+    }
+
+    function rejectOrder(orderId) {
+      var endpoint = EndpointService.get('rejectOrder', orderId);
       var req = {
         method: endpoint.method,
         url: endpoint.url,
