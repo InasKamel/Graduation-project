@@ -8,11 +8,11 @@
   routes.$inject = ['$stateProvider'];
   function routes($stateProvider) {
     $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl: 'modules/login/login.html',
-      controller: 'LoginController as ctrl',
-      data: {}
-    });
+      .state('dashboard.orders', {
+        url: '/orders',
+        templateUrl: 'modules/orders/orders.html',
+        controller: 'OrdersController as ctrl',
+        data: {}
+      });
   }
 })();

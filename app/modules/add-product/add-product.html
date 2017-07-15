@@ -1,108 +1,107 @@
-<div id="product-module">
-    <div class="back-btn" ui-sref="dashboard.list-products({ id: ctrl.categoryId })">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-    </div>
-    <div class="row">
-        <div class="product-image col-sm-7">
-            <div class="product-display">
-                <!--<img ng-src="{{ ctrl.product.image }}">-->
+<div id="add-product-module" ng-show="showContent">
+  <form name="productForm" ng-submit="ctrl.addProduct();" class="ui form">
+    <div class="row" style="margin: 0;">
+      <div class="product-image col-xs-12 col-sm-6">
+        <!--product-name-->
+        <div class="section product-name">
+          <div class="field-editing">
+            <label>Product name</label>
+            <input type="text" name="name" ng-model="ctrl.product.name" required>
+            <div ng-messages="productForm.name.$touched && productForm.name.$error">
+              <p class="alert alert-danger" ng-message="required">Name is required</p>
             </div>
+          </div>
+        </div> <!--/product-name-->
+
+        <!--product-desc-->
+        <div class="section product-desc">
+          <div class="field-editing">
+            <label>Product description</label>
+            <textarea name="desc" ng-model="ctrl.product.desc" rows="4"></textarea>
+          </div>
+        </div> <!--/product-desc-->
+
+        <!--product-price-->
+        <div class="section product-price">
+          <label><i class="fa fa-money"></i> Price</label>
+          <div class="field-editing">
+            <input type="number" min="0.0" step="0.01" name="price" ng-model="ctrl.product.price" required>
+            <div class="messages" ng-messages="productForm.price.$touched && productForm.price.$error">
+              <p class="alert alert-danger" ng-message="required">Price is required</p>
+              <p class="alert alert-danger" ng-message="number">Price should be a number</p>
+              <p class="alert alert-danger" ng-message="number">Price should be a positive number</p>
+            </div>
+          </div>
+        </div> <!--/product-price-->
+      </div>
+
+      <div class="product-details col-xs-12 col-sm-6">
+        <div class="details">
+          <!--product-colors-->
+          <div class="section product-colors">
+            <label><i class="fa fa-paint-brush"></i> Colors</label>
+            <div class="colors" ng-if="ctrl.product.dynamicFields.colors.length">
+              <div
+                class="color"
+                ng-repeat="color in ctrl.product.dynamicFields.colors track by $index"
+                ng-style="{ 'background-color': color.value }"
+                ng-class="{ 'disabled': ctrl.isLoading }"
+                ng-click="ctrl.deleteColor(color.value)">
+                <div class="delete"><i class="fa fa-trash"></i></div>
+              </div>
+            </div>
+            <div class="new-color field-editing">
+              <div class="row">
+                <div class="col-xs-5">
+                  <color-picker
+                    ng-model="ctrl.colorPickerValue"
+                    options="ctrl.colorPickerOptions">
+                  </color-picker>
+                </div>
+                <div class="col-xs-7">
+                  <button type="button" ng-click="ctrl.addColor()" class="ui basic button"><i class="fa fa-plus"></i> Add</button>
+                </div>
+              </div>
+            </div>
+          </div> <!--/product-colors-->
+
+          <!--product-sizes-->
+          <div class="section product-sizes">
+            <label><i class="fa fa-th"></i> Sizes</label>
+            <div style="margin-left: 10px;" class="ui basic buttons">
+              <button
+                type="button"
+                class="ui button"
+                ng-disabled="ctrl.isLoading"
+                ng-repeat="(size, value) in ctrl.product.dynamicFields.sizes"
+                ng-class="{ 'inverted': value }"
+                ng-click="ctrl.changeSize(size)">{{ size }}</button>
+            </div>
+          </div> <!--/product-size-->
+
+          <div class="section product-images">
+            <label><i class="fa fa-camera"></i> Images</label>
+            <input type="file" accept="image/*" files-model="ctrl.product.images" multiple>
+          </div>
         </div>
-        <div class="product-details col-sm-5" slimscroll="{ height: 'auto' }">
-            <div class="details">
-                <form name="productForm">
-                    <!--product-name-->
-                    <div class="product-name">
-                        <div class="field-editing">
-                            <p>Product name</p>
-                            <input type="text" name="name" ng-model="ctrl.product.name" autofocus required>
-                            <div class="messages" ng-messages="productForm.name.$touched && productForm.name.$error">
-                                <p ng-message="required">Name is required</p>
-                            </div>
-                        </div>
-                    </div> <!--/product-name-->
-
-                    <!--product-desc-->
-                    <div class="product-desc">
-                        <div class="field-editing">
-                            <p>Product description</p>
-                            <textarea name="desc" ng-model="ctrl.product.desc" autofocus></textarea>
-                            <div class="messages" ng-messages="productForm.desc.$touched && productForm.desc.$error">
-                            </div>
-                        </div>
-                    </div> <!--/product-desc-->
-
-                    <!--product-price-->
-                    <div class="product-price">
-                        <p><i class="fa fa-money"></i>Price</p>
-                        <div class="field-editing">
-                            <input type="number" step="0.01" name="price" ng-model="ctrl.product.price" autofocus required>
-                            <div class="messages" ng-messages="productForm.price.$touched && productForm.price.$error">
-                                <p ng-message="required">Price is required</p>
-                                <p ng-message="number">Price should be a number</p>
-                            </div>
-                        </div>
-                    </div> <!--/product-price-->
-
-                    <!--product-colors-->
-                    <div class="product-colors">
-                        <p><i class="fa fa-paint-brush"></i>Colors</p>
-                        <div class="colors">
-                            <div
-                                class="color"
-                                ng-repeat="color in ctrl.product.dynamicFields.colors track by $index"
-                                ng-style="{ 'background-color': color.value }"
-                                ng-class="{ 'disabled': ctrl.isLoading }"
-                                ng-click="ctrl.deleteColor(color.value)">
-                                    <div class="delete">
-                                        <i class="fa fa-trash"></i>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="new-color field-editing">
-                            <p>Add new color</p>
-                            <color-picker
-                                ng-model="ctrl.colorPickerValue"
-                                options="ctrl.colorPickerOptions">
-                            </color-picker>
-                            <div class="btns">
-                                <button
-                                    ng-disabled="ctrl.isLoading"
-                                    ng-click="ctrl.addColor()"
-                                    class="save-btn"><i class="fa fa-plus"></i>Add</button>
-                            </div>
-                        </div>
-                    </div> <!--/product-colors-->
-
-                    <!--product-sizes-->
-                    <div class="product-sizes">
-                        <p><i class="fa fa-th" aria-hidden="true"></i>Sizes</p>
-                        <div class="btns">
-                            <button
-                                class="size-btn"
-                                ng-disabled="ctrl.isLoading"
-                                ng-repeat="(size, value) in ctrl.product.dynamicFields.sizes"
-                                ng-class="{ 'selected': value }"
-                                ng-click="ctrl.changeSize(size)">{{ size }}</button>
-                        </div>
-                    </div> <!--/product-size-->
-
-                    <div class="field-editing" style="margin: 30px 0;">
-                        <div class="btns">
-                            <div class="spinner" ng-show="ctrl.isLoading">
-                                <div class="bounce1"></div>
-                                <div class="bounce2"></div>
-                                <div class="bounce3"></div>
-                            </div>
-                            <button
-                                type="submit"
-                                ng-disabled="ctrl.isLoading || productForm.price.$invalid"
-                                ng-click="ctrl.addProduct();"
-                                class="save-btn"><i class="fa fa-plus"></i>Add product</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div> <!--/product-details-->
-    </div> <!--/row-->
-</div> <!--/product-module-->
+      </div>
+    </div>
+    <div class="row" style="margin: 0; text-align: center;">
+      <div class="col-xs-12">
+        <div class="field-editing" style="margin: 30px 0;">
+          <div class="btns">
+            <button
+              type="button"
+              ui-sref="dashboard.list-products({ id: ctrl.categoryId })"
+              class="ui button"><i class="fa fa-times"></i> Cancel</button>
+            <button
+              type="submit"
+              ng-disabled="productForm.price.$invalid"
+              class="ui button"><i class="fa fa-plus"></i> Add product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!--/product-module-->

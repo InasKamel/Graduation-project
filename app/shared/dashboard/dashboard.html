@@ -1,61 +1,79 @@
+<div class="page-loading" ng-if="loading">
+  <img src="../assets/images/octana.png" style="height: 200px;">
+  <div><span class="spinner"></span> Loading</div>
+</div>
 <div id="dashboard">
-    <div id="sidebar">
-        <div class="logo">
-            <a ui-sref="{{ homepage }}"><img ng-src="./assets/images/logo.png"></a>
-        </div>
-        <div class="menu">
-            <div class="collapse-menu">
-                <div class="menu-btn collapsed" data-toggle="collapse" href="#collapse-sidebar-menu">
-                    <i class="fa fa-th" aria-hidden="true"></i>
-                    <span>Products</span>
-                    <i class="dropdown-icon fa fa-angle-down" aria-hidden="true"></i>
-                    <i class="dropdown-icon fa fa-angle-left" aria-hidden="true"></i>
-                </div>
-                <div id="collapse-sidebar-menu" class="collapse">
-                    <a ng-repeat="category in ctrl.categories" ui-sref="dashboard.list-products({ id: category.id })" class="menu-btn sub-menu-btn">{{ category.name }}</a>
-                </div>
-            </div>
-            <div class="menu-btn">
-                <i class="fa fa-line-chart" aria-hidden="true"></i>
-                <span>Statistics</span>
-            </div>
-        </div>
-    </div> <!--/sidebar -->
+  <!--sidebar-->
+  <div id="dashboard-sidebar">
+    <div id="dashboard-logo">
+      <div class="logo">
+        <img ng-src="./assets/images/logo.png" ui-sref="{{ homepage }}" style="cursor: pointer;">
+        <!--<span >Octana</span>-->
+      </div>
+      <span class="version">beta</span>
+    </div>
+    <!--<div id="dashboard-status">
+      <p>Last update 20/10/2017</p>
+    </div>-->
+    <div id="dashboard-menu" ng-scrollbars ng-scrollbars-config="{ theme: 'minimal', scrollInertia: 250 }">
+      <div class="menu-section">
+        <p class="section-title">Dashboard</p>
+        <ul>
+          <li ui-sref-active="active" ui-sref="dashboard.statistics"><i class="fa fa-fw fa-line-chart"></i> Statistics</li>
+          <li ui-sref-active="active" ui-sref="dashboard.orders"><i class="fa fa-fw fa-diamond"></i> Orders</li>
+          <!-- <span class="count">3</span> -->
+          <!--<li><i class="fa fa-fw fa-comments-o"></i> Comments</li>-->
+        </ul>
+      </div>
+      <div class="menu-section">
+        <p class="section-title">Categories</p>
+        <ul>
+          <li ng-repeat="category in ctrl.categories" ui-sref-active="active" ui-sref="dashboard.list-products({ id: category.id })">
+            <i class="fa fa-fw fa-list-alt"></i> {{ category.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> <!--/end-sidebar-->
 
-    <div id="page">
-        <header>
-            <ul>
-                <li class="shop" ng-if="ctrl.shopInfo">
-                    <div class="logo">
-                        <img ng-src="{{ ctrl.shopInfo.logo }}">
-                    </div>
-                    <div class="details">
-                        <p class="name">{{ ctrl.shopInfo.name }}</p>
-                        <p class="slogn">{{ ctrl.shopInfo.slogan }}</p>
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li class="settings">
-                    <!--<a>
-                        <i class="fa fa-gear"></i>
-                    </a>
-                    <div class="clear"></div>-->
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="settings-menu" data-toggle="dropdown" aria-haspopup="true">
-                            <i class="fa fa-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#" ui-sref="dashboard.settings">Settings</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" ng-click="ctrl.logout()">Logout</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </header> <!--/header-->
+  <div id="dashboard-content-cover"></div>
 
-        <div class="content">
-            <ui-view></ui-view>
-        </div> <!--/content-->
-    </div> <!--/page-->
-</div> <!--/dashboard -->
+  <!--content-->
+  <div id="dashboard-content">
+    <div id="dashboard-header">
+      <ul>
+        <li class="sidebar-toggler"><i class="fa fa-bars"></i></li>
+        <li class="page-title">{{ ((pageTitle) ? pageTitle : 'Dashboard') }}</li>
+        <li class="header-btn" ng-click="logout();"><i class="fa fa-sign-out"></i></li>
+        <li class="header-btn" ui-sref="dashboard.settings"><i class="fa fa-gear"></i></li>
+        <li class="shop-info">
+          <img ng-src="{{ ctrl.shopInfo.logo }}">
+          <div class="details">
+            <p class="name">{{ ctrl.shopInfo.name }}</p>
+            <p class="slogan">{{ ctrl.shopInfo.slogan }}</p>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div id="page-content">
+      <!--ng-scrollbars ng-scrollbars-config="{ theme: 'minimal-dark', scrollInertia: 250 }"-->
+      <ui-view></ui-view>
+    </div>
+  </div><!--/end-content-->
+</div>
+
+<script>
+  var breakPoint = 992;
+  $( ".sidebar-toggler, #dashboard-content-cover, .menu-section > ul" ).click(function() {
+    if($( window ).width() <= breakPoint) {
+      $( "#dashboard" ).toggleClass( "sidebar-active" );
+    }
+  });
+  $( window ).resize(function() {
+    if($( window ).width() > breakPoint) {
+      $( "#dashboard" ).removeClass( "sidebar-active" );
+    }
+  });
+</script>

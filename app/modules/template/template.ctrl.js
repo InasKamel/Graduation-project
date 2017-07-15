@@ -1,31 +1,32 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('dashboard')
-        .controller('TemplateController', TemplateController);
+  angular
+    .module('dashboard')
+    .controller('TemplateController', TemplateController);
 
-    TemplateController.$inject = ['TemplateService'];
-    function TemplateController(TemplateService) {
-        var vm = this;
-        vm.sayHello = sayHello;
-        vm.testService = testService;
+  TemplateController.$inject = ['$rootScope', 'TemplateService'];
+  function TemplateController($rootScope, TemplateService) {
+    var vm = this;
+    vm.sayHello = sayHello;
+    vm.testService = testService;
+    $rootScope.loading = false;
 
-        testService();
+    testService();
 
-        function sayHello() {
-            return 'Welcome !';
-        }
-
-        function testService() {
-            TemplateService
-                .callBackend()
-                .then(function(res) {
-                    // console.log(res.data);
-                })
-                .catch(function(err) {
-                    // console.log(err);
-                });
-        }
+    function sayHello() {
+      return 'Welcome !';
     }
+
+    function testService() {
+      TemplateService
+        .callBackend()
+        .then(function(res) {
+          // console.log(res.data);
+        })
+        .catch(function(err) {
+          // console.log(err);
+        });
+    }
+  }
 })();

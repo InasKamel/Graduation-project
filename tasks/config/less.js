@@ -11,17 +11,17 @@
  */
 
 module.exports = function(grunt) {
-    grunt.config.set('less', {
-        dev: {
-            files: [{
-                expand: true,
-                cwd: './app',
-                src: ['**/*.less'],
-                dest: '.tmp/',
-                ext: '.css'
-            }]
-        }
-    });
+  grunt.config.set('less', {
+    dev: {
+      files: [{
+        expand: true,
+        cwd: './app',
+        src: ['**/*.less'],
+        dest: '.tmp/',
+        ext: '.css'
+      }]
+    }
+  });
 
-    grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-less');
 };

@@ -1,165 +1,166 @@
 #settings-module {
-    .shop-logo {
-        text-align: center;
+  padding-top: 20px;
+  .shop-logo {
+    text-align: center;
+  }
+  .shop-details {
+    .name {
+      font-size: 32px;
     }
-    .shop-details {
-        .name {
-            font-size: 32px;
-        }
-        .slogan {
-            margin-top: -5px;
-            margin-bottom: 15px;
-        }
-
-        i {
-            width: 18px;
-        }
-
-        .shop-phone, .shop-email {
-            position: relative;
-            margin: 7px 0;
-            &:hover .edit-btn {
-                display: inline;
-            }
-        }
+    .slogan {
+      margin-top: -5px;
+      margin-bottom: 15px;
     }
+
+    i {
+      width: 18px;
+    }
+
+    .shop-phone, .shop-email {
+      position: relative;
+      margin: 7px 0;
+      &:hover .edit-btn {
+        display: inline;
+      }
+    }
+  }
 }
 
 #settings-module .shop-details .edit-btn {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 7px 0px 6px;
-    border-radius: 3px;
-    font-size: 16px !important;
-    float: right;
-    cursor: pointer;
-    color: #666;
-    border: 1px solid #DDD;
-    background-color: #FFF;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 7px 0px 6px;
+  border-radius: 3px;
+  font-size: 16px !important;
+  float: right;
+  cursor: pointer;
+  color: #666;
+  border: 1px solid #DDD;
+  background-color: #FFF;
+
+  -webkit-transition: all 400ms;
+  -moz-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+
+  span {
+    display: inline-block;
+    line-height: 15px;
+    margin: 0;
+    opacity: 0;
+    max-width: 0px;
+    overflow: hidden;
 
     -webkit-transition: all 400ms;
     -moz-transition: all 400ms;
     -o-transition: all 400ms;
     transition: all 400ms;
+  }
 
+  i {
+    margin: 0;
+    line-height: 15px;
+  }
+
+  &:hover {
     span {
-        display: inline-block;
-        line-height: 15px;
-        margin: 0;
-        opacity: 0;
-        max-width: 0px;
-        overflow: hidden;
-
-        -webkit-transition: all 400ms;
-        -moz-transition: all 400ms;
-        -o-transition: all 400ms;
-        transition: all 400ms;
+      opacity: 1;
+      max-width: 100px;
+      margin: 0px 5px 0px 8px;
     }
-
-    i {
-        margin: 0;
-        line-height: 15px;
-    }
-
-    &:hover {
-        span {
-            opacity: 1;
-            max-width: 100px;
-            margin: 0px 5px 0px 8px;
-        }
-    }
+  }
 }
 
 #settings-module .shop-details .field-editing {
-    background-color:#F1F1F1;
-    padding: 15px;
+  background-color:#F1F1F1;
+  padding: 15px;
 
+  p {
+    margin-bottom: 5px;
+    font-size:16px;
+    font-weight: bold;
+  }
+
+  textarea, input {
+    width: 100%;
+    resize: none;
+    padding: 7px 9px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    box-shadow: none;
+    border: solid 1px #DCDCDC;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.new-color {
+    .color-picker-wrapper {
+      position: absolute;
+      max-width: 200px;
+    }
+    input {
+      width: auto;
+      margin: auto;
+      padding: 5px 7px;
+    }
+  }
+
+  .messages {
+    margin-top: 3px;
     p {
-        margin-bottom: 5px;
-        font-size:16px;
-        font-weight: bold;
+      font-size: 15px;
+      padding: 7px 9px;
+      background-color: #FFDDDD;
+      color: #EE0000;
+      font-weight: normal;
     }
+  }
 
-    textarea, input {
-        width: 100%;
-        resize: none;
-        padding: 7px 9px;
-        margin-bottom: 5px;
-        font-size: 14px;
-        box-shadow: none;
+  .btns {
+    text-align: right;
+    button {
+      padding: 5px 10px;
+      margin: 5px 0 2px 5px;
+      font-size: 13px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-transition: all 400ms;
+      -moz-transition: all 400ms;
+      -o-transition: all 400ms;
+      transition: all 400ms;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.save-btn {
+        color: #FFF;
+        background-color:#3498DB;
+        border: none;
+        &:hover {
+          background-color: #6fa8dc;
+        }
+        &:disabled {
+          background: #999;
+          cursor: wait;
+        }
+      }
+
+      &.cancel-btn {
+        color:#696969;
         border: solid 1px #DCDCDC;
-
-        &:focus {
-            outline: none;
+        background-color:#F5F5F5;
+        &:hover {
+          color: #444;
+          border-color: #CCC;
+          background-color:#F0F0F0;
         }
+      }
     }
-
-    &.new-color {
-        .color-picker-wrapper {
-            position: absolute;
-            max-width: 200px;
-        }
-        input {
-            width: auto;
-            margin: auto;
-            padding: 5px 7px;
-        }
-    }
-
-    .messages {
-        margin-top: 3px;
-        p {
-            font-size: 15px;
-            padding: 7px 9px;
-            background-color: #FFDDDD;
-            color: #EE0000;
-            font-weight: normal;
-        }
-    }
-
-    .btns {
-        text-align: right;
-        button {
-            padding: 5px 10px;
-            margin: 5px 0 2px 5px;
-            font-size: 13px;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 3px;
-            -webkit-transition: all 400ms;
-            -moz-transition: all 400ms;
-            -o-transition: all 400ms;
-            transition: all 400ms;
-
-            &:focus {
-                outline: none;
-            }
-
-            &.save-btn {
-                color: #FFF;
-                background-color:#3498DB;
-                border: none;
-                &:hover {
-                    background-color: #6fa8dc;
-                }
-                &:disabled {
-                    background: #999;
-                    cursor: wait;
-                }
-            }
-
-            &.cancel-btn {
-                color:#696969;
-                border: solid 1px #DCDCDC;
-                background-color:#F5F5F5;
-                &:hover {
-                    color: #444;
-                    border-color: #CCC;
-                    background-color:#F0F0F0;
-                }
-            }
-        }
-    }
+  }
 }

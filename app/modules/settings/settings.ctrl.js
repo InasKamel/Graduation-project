@@ -1,44 +1,50 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('dashboard')
-        .controller('SettingsController', SettingsController);
+  angular
+    .module('dashboard')
+    .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['ShopService'];
-    function SettingsController(ShopService) {
-        var vm = this;
-        vm.shop = undefined;
-        vm.feildInEdit = undefined;
-        vm.isLoading = false;
+  SettingsController.$inject = ['$rootScope', '$timeout', 'ShopService'];
+  function SettingsController($rootScope, $timeout, ShopService) {
+    var vm = this;
+    $rootScope.pageTitle = 'Settings';
+    vm.shop = undefined;
+    vm.feildInEdit = undefined;
 
-        vm.updateShopInfo = updateShopInfo;
+    vm.updateShopInfo = updateShopInfo;
 
-        init();
+    init();
 
-        function init() {
-            ShopService
-                .getShopInfo()
-                .then(function(res) {
-                    vm.shop = res.data;
-                })
-                .catch(function(err) {
-                    // @TODO: handle error
-                });
-        }
-
-        function updateShopInfo(attribute, newValue) {
-            vm.isLoading = true;
-            ShopService
-                .updateShopInfo(attribute, newValue)
-                .then(function(res) {
-                    vm.shop[attribute] = newValue;
-                    vm.feildInEdit = undefined;
-                    vm.isLoading = false;
-                })
-                .catch(function(err) {
-                    //   @TODO: handle he error
-                });
-        }
+    function init() {
+      $timeout(function () {
+        ShopService
+        .getShopInfo()
+        .then(function(res) {
+          vm.shop = res.data;
+          $rootScope.showContent = true;
+          $rootScope.loading = false;
+        })
+        .catch(function(err) {
+          // @TODO: handle error
+        });
+      }, 500);
     }
+
+    function updateShopInfo(attribute, newValue) {
+      $rootScope.loading = true;
+      $timeout(function () {
+        ShopService
+        .updateShopInfo(attribute, newValue)
+        .then(function(res) {
+          vm.shop[attribute] = newValue;
+          vm.feildInEdit = undefined;
+          $rootScope.loading = false;
+        })
+        .catch(function(err) {
+          //   @TODO: handle he error
+        });
+      }, 500);
+    }
+  }
 })();

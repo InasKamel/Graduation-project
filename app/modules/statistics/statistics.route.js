@@ -8,10 +8,10 @@
   routes.$inject = ['$stateProvider'];
   function routes($stateProvider) {
     $stateProvider
-      .state('dashboard.settings', {
-        url: '/settings',
-        templateUrl: 'modules/settings/settings.html',
-        controller: 'SettingsController as ctrl',
+      .state('dashboard.statistics', {
+        url: '/statistics',
+        templateUrl: 'modules/statistics/statistics.html',
+        controller: 'StatisticsController as ctrl',
         data: {}
       });
   }
