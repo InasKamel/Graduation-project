@@ -12,6 +12,7 @@
       getProduct: getProduct,
       createProduct: createProduct,
       updateProduct: updateProduct,
+      getProductStatistics: getProductStatistics,
       addImage: addImage,
       removeImage: removeImage,
       addColor: addColor,
@@ -61,6 +62,16 @@
         data: {},
       };
       req.data[attribute] = newValue;
+      return $http(req);
+    }
+
+    function getProductStatistics(productId) {
+      var endpoint = EndpointService.get('getProductStatistics', productId);
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+      };
       return $http(req);
     }
 

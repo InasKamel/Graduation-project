@@ -8,6 +8,7 @@
       'ngMessages',
       'color.picker',
       'ngScrollbars',
+      'chart.js'
     ])
     .run(appRun);
 

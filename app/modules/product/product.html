@@ -43,8 +43,21 @@
       </div>
     </div>
 
-    <div class="product-details col-sm-5">
-      <div class="details">
+    <div class="product-details col-sm-6">
+      <div class="row" style="padding: 10px 0;">
+        <button class="ui basic button pull-right"
+          ng-if="ctrl.tab !== 'statistics'"
+          ng-click="ctrl.tab = 'statistics';">
+          <i class="fa fa-bar-chart"></i> Statistics
+        </button>
+        <button class="ui basic button pull-right"
+          ng-if="ctrl.tab !== 'details'"
+          ng-click="ctrl.tab = 'details';">
+          <i class="fa fa-info"></i> Details
+        </button>
+      </div>
+
+      <div class="details" ng-if="ctrl.tab === 'details'">
         <!--product-name-->
         <div class="product-name">
           <div class="field-value" ng-hide="ctrl.feildInEdit === 'product-name'">
@@ -218,6 +231,55 @@
           </div>
         </div> <!--/product-size-->
 
+      </div>
+
+      <div class="statistics" ng-if="ctrl.tab === 'statistics'">
+        <div class="row" style="margin: 0;">
+          <div class="ui basic buttons">
+            <button class="ui button"
+              ng-click="ctrl.statisticsTab = 'views'"
+              ng-class="{ 'active': ctrl.statisticsTab === 'views' }"><i class="fa fa-eye"></i> Views</button>
+            <button class="ui button"
+              ng-click="ctrl.statisticsTab = 'likes'"
+              ng-class="{ 'active': ctrl.statisticsTab === 'likes' }"><i class="fa fa-heart"></i> Likes</button>
+            <!--<button class="ui button"
+              ng-click="ctrl.statisticsTab = 'orders'"
+              ng-class="{ 'active': ctrl.statisticsTab === 'orders' }"><i class="fa fa-diamond"></i> Orders</button>-->
+          </div>
+          <div>
+            <div class="row" style="margin: 0; margin-top: 30px;">
+              <canvas class="chart chart-line"
+                chart-data="ctrl.statistics[ctrl.statisticsTab].events.data"
+                chart-labels="ctrl.statistics[ctrl.statisticsTab].events.labels"></canvas>
+            </div>
+            <div class="row" style="margin: 0; margin-top: 30px;">
+              <div class="col-xs-4">
+                <div class="ui small statistic" style="margin-top: 10px;">
+                  <div ng-if="ctrl.statisticsTab === 'views'" class="value">{{ ctrl.statistics.views.count }}</div>
+                  <div ng-if="ctrl.statisticsTab === 'views'" class="label">Views</div>
+
+                  <div ng-if="ctrl.statisticsTab === 'likes'" class="value">{{ ctrl.statistics.likes.count }}</div>
+                  <div ng-if="ctrl.statisticsTab === 'likes'" class="label">Likes</div>
+
+                  <!--<div ng-if="ctrl.statisticsTab === 'orders'" class="value">{{ ctrl.statistics.orders.count }}</div>
+                  <div ng-if="ctrl.statisticsTab === 'orders'" class="label">Orders</div>-->
+                </div>
+              </div>
+              <div class="col-xs-4">
+                <p>Genders</p>
+                <canvas class="chart chart-pie"
+                  chart-labels="ctrl.statistics[ctrl.statisticsTab].gender.labels"
+                  chart-data="ctrl.statistics[ctrl.statisticsTab].gender.data"></canvas>
+              </div>
+              <div class="col-xs-4">
+                <p>Ages</p>
+                <canvas class="chart chart-pie"
+                  chart-labels="ctrl.statistics[ctrl.statisticsTab].ageRanges.labels"
+                  chart-data="ctrl.statistics[ctrl.statisticsTab].ageRanges.data"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div> <!--/product-details-->
   </div> <!--/row-->

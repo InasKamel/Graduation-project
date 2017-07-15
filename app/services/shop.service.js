@@ -10,6 +10,7 @@
     var methods = {
       getShopInfo: getShopInfo,
       updateShopInfo: updateShopInfo,
+      getGeneralStatistics: getGeneralStatistics
     };
     return methods;
 
@@ -34,5 +35,16 @@
       req.data[attribute] = newValue;
       return $http(req);
     }
+
+    function getGeneralStatistics() {
+      var endpoint = EndpointService.get('getGeneralStatistics');
+      var req = {
+        method: endpoint.method,
+        url: endpoint.url,
+        headers: {},
+      };
+      return $http(req);
+    }
+
   }
 })();

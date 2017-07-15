@@ -8,6 +8,9 @@
   ProductController.$inject = ['$rootScope', '$state', '$timeout', 'ProductService'];
   function ProductController($rootScope, $state, $timeout, ProductService) {
     var vm = this;
+    vm.tab = 'details';
+    vm.statisticsTab = 'views';
+    vm.productStatistics = undefined;
     vm.product = undefined;
     vm.feildInEdit = undefined;
 
@@ -15,6 +18,8 @@
     vm.colorPickerOptions = {
       format: 'hex'
     };
+
+    vm.statistics = {};
 
     vm.updateProduct = updateProduct;
     vm.changeSize = changeSize;
@@ -37,10 +42,32 @@
         .getProduct(productId)
         .then(function(res) {
           vm.product = res.data;
+          return ProductService.getProductStatistics(vm.product.id);
+        })
+        .then(function(res) {
+          vm.productStatistics = res.data;
+          ['views', 'likes'].forEach(function (x) {
+            vm.statistics[x] = {
+              count: res.data[x].count,
+              gender: {
+                labels: ((res.data[x].count) ? getObjectVals(res.data[x].genders, 'keys') : ['0']),
+                data: ((res.data[x].count) ? getObjectVals(res.data[x].genders, 'values') : ['1'])
+              },
+              ageRanges: {
+                labels: ((res.data[x].count) ? getObjectVals(res.data[x].ageRanges, 'keys') : ['0']),
+                data: ((res.data[x].count) ? getObjectVals(res.data[x].ageRanges, 'values') : ['1'])
+              },
+              events: {
+                labels: ((res.data[x].count) ? getObjectVals(res.data[x].events, 'keys') : ['0']),
+                data: ((res.data[x].count) ? getObjectVals(res.data[x].events, 'values') : ['0'])
+              }
+            };
+          });
+
           $rootScope.showContent = true;
           $rootScope.loading = false;
         })
-        .catch(function(err) {
+        .catch                    (function(err) {
           if(err.status === 404) {
             window.location = '/';
           }
@@ -149,6 +176,20 @@
           });
         }, 300);
       }
+    }
+
+    function getObjectVals(obj, select) {
+      var ret = [];
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if(select === 'keys') {
+            ret.push(key);
+          } else if(select === 'values') {
+            ret.push(obj[key]);
+          }
+        }
+      }
+      return ret;
     }
   }
 })();

@@ -56,6 +56,12 @@
       removeProduct: function(productId) {
         return { method: 'DELETE', url: baseURL + '/products/' + productId };
       },
+      getProductStatistics: function(productId) {
+        return { method: 'GET', url: baseURL + '/products/' + productId + '/statistics' };
+      },
+      getGeneralStatistics: function() {
+        return { method: 'GET', url: baseURL + '/statistics' };
+      },
       addProductImages: function(productId) {
         return { method: 'POST', url: baseURL + '/products/' + productId + '/images' };
       },
