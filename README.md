@@ -2,6 +2,8 @@
 
 ### Installation
 ```sh
+$ git clone https://github.com/InasKamel/GP-FE.git
+$ cd GP-FE
 $ npm install
 $ bower install
 ```
