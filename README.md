@@ -1,4 +1,4 @@
-# :computer: Graduation project | Frontend Repository
+# :computer: Shopping Service | Frontend Repository
 
 ### Installation
 ```sh
