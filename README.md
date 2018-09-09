@@ -12,3 +12,9 @@ $ npm install
 $ gulp serve
 ```
 
+### Deployment
+```sh
+$ cd dist
+$ gulp Deploy
+```
+
