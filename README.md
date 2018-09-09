@@ -1,19 +1,14 @@
-# :computer: Khattab | Frontend Repository
+# :computer: Shopping Service | Frontend Repository
 
 ### Installation
 ```sh
-$ git clone https://sieraj.visualstudio.com/khattab/_git/khattab
-$ cd khattab
+$ git clone https://github.com/InasKamel/GP-FE.git
+$ cd GP-FE
 $ npm install
+$ bower install
 ```
 
 ### Run
 ```sh
-$ gulp serve
+$ grunt serve
 ```
-
-### Deployment
-```sh
-$ gulp Deploy
-```
-
